@@ -1,36 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Visit Rwanda Quiz">
-    <meta property="og:type" content="website">
-    <title>Visit Rwanda Quiz </title>
-    <!-- css file  -->
+    <title>Rwanda Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body>
-    <div id="main-container">
-        <div class="blue-color-container">blue-color-container
-            <div id="solardiv">
-                <img src="./assets/images/rwandasunflag.webp" alt="Rwandan sun flag">
-            </div>
-        </div>
-        <div class="heading1">
-
-            <h1 class="font-size-h6">Visit Rwanda Quiz</h1>
-
-        </div>
-        <div>
-            <p class="gelb-container"> Gelb</p>
-        </div>
-
-        <div class="green-container">Green</div>
-
+    <div id="login" class="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter your username">
+        <button onclick="startQuiz()">Start Quiz</button>
     </div>
+
+    <div id="quiz" class="quiz-container" style="display: none;">
+        <h2>Rwanda Quiz</h2>
+        <div id="progress-bar" class="progress-bar"></div>
+        <div id="question-container"></div>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
+
     <script src="./assets/js/script.js"></script>
 </body>
-
 </html>
