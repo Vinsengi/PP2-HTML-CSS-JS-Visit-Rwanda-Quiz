@@ -1,0 +1,20 @@
+body {
+    background-color:beige;
+}
+
+h1 {
+    background-color: yellow;
+    color: green;
+    font-size: 2rem;
+   
+   
+  
+}
+
+#main-container {
+     background-color: blue;
+     border: 1px solid blue;
+
+
+  
+}
