@@ -52,7 +52,7 @@ The Rwandan Quiz Application is a fun and interactive way to test your knowledge
 ## User Experience (UX)
 
 ### User Stories
-* I want to take part in a pub quiz online and improve my general knowledge. I want to be able to play at any time, anywhere.
+* I want to take part in a quiz online and improve my general knowledge. I want to be able to play at any time, anywhere.
 * I want the site to be responsive to my device.
 * I want the site to be easy to navigate.
 
