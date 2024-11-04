@@ -43,11 +43,14 @@ function startQuiz() {
   loadQuestion();
 }
 
+let firstChoiceRecorded = false; // Track if first choice has been recorded
+let timer; // Timer variable
+
 function loadQuestion() {
-  clearTimeout(timer);
-  document.getElementById("timer").innerText = "15";
+  firstChoiceRecorded = false; // Reset for each new question
+  document.getElementById("timer").innerText = "15"; // Reset timer display
   document.getElementById("hint").disabled = hintUsed;
-  
+
   const questionElement = document.getElementById("question");
   const answersElement = document.getElementById("answers");
   const questionNumberElement = document.getElementById("question-number");
@@ -58,6 +61,7 @@ function loadQuestion() {
   questionElement.innerText = currentQuestion.question;
   answersElement.innerHTML = "";
 
+  // Create answer buttons
   currentQuestion.answers.forEach((answer, index) => {
     const button = document.createElement("button");
     button.innerText = answer;
@@ -66,28 +70,55 @@ function loadQuestion() {
   });
 
   progressElement.style.width = ((currentQuestionIndex + 1) / shuffledQuestions.length) * 100 + "%";
+
+  startTimer(); // Start the timer for this question
 }
 
-function selectAnswer(index) {
-  clearInterval(timer);
-  const currentQuestion = shuffledQuestions[currentQuestionIndex];
-  const isCorrect = index === currentQuestion.correct;
-  
-  results.push({
-    question: currentQuestion.question,
-    selectedAnswer: currentQuestion.answers[index],
-    correctAnswer: currentQuestion.answers[currentQuestion.correct],
-    isCorrect: isCorrect
-  });
+function startTimer() {
+  let timeLeft = 15; // Set timer for 15 seconds
+  document.getElementById("timer").innerText = timeLeft; // Display initial time
 
-  if (isCorrect) {
-    score++;
-    streak++;
-  } else {
-    streak = 0;
+  // Clear any existing timer before starting a new one
+  clearInterval(timer);
+  timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timer").innerText = timeLeft; // Update timer display
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      alert("Time's up! Moving to the next question.");
+      nextQuestion(); // Automatically go to next question when time's up
+    }
+  }, 1000); // Update every second
+}
+
+
+function selectAnswer(index) {
+  const currentQuestion = shuffledQuestions[currentQuestionIndex];
+
+  // Record the first answer selection only if it hasn’t been recorded yet
+  if (!firstChoiceRecorded) {
+    firstChoiceRecorded = true;
+    const isCorrectFirstChoice = index === currentQuestion.correct;
+    
+    results.push({
+      question: currentQuestion.question,
+      firstChoice: currentQuestion.answers[index],
+      correctAnswer: currentQuestion.answers[currentQuestion.correct],
+      isCorrectFirstChoice: isCorrectFirstChoice
+    });
+
+    if (isCorrectFirstChoice) {
+      score++;
+      streak++;
+    } else {
+      streak = 0;
+    }
   }
 
-  showFeedback(isCorrect);
+  // Provide feedback for each answer attempt
+  showFeedback(index === currentQuestion.correct);
+  clearInterval(timer); // Stop the timer when an answer is selected
   document.getElementById("next").classList.remove("hidden"); // Show Next button
 }
 
@@ -97,8 +128,7 @@ function showFeedback(isCorrect) {
     feedbackElement.innerText = `Correct! Great job, ${username}!`;
     feedbackElement.style.color = "green";
   } else {
-    const correctAnswer = shuffledQuestions[currentQuestionIndex].answers[shuffledQuestions[currentQuestionIndex].correct];
-    feedbackElement.innerText = `Incorrect. The correct answer was: ${correctAnswer}.`;
+    feedbackElement.innerText = "Incorrect. Try again!";
     feedbackElement.style.color = "red";
   }
 }
@@ -122,20 +152,40 @@ function useHint() {
   }
 }
 
+// function showResults() {
+//   document.getElementById("quiz").classList.add("hidden");
+//   document.getElementById("result").classList.remove("hidden");
+//   document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
+  
+//   const resultsElement = document.getElementById("comparison");
+//   resultsElement.innerHTML = "<h3>Your Answers Compared to Correct Answers:</h3>";
+  
+//   results.forEach((result, index) => {
+//     const resultItem = document.createElement("div");
+//     resultItem.classList.add("result-item");
+//     resultItem.innerHTML = `
+//       <p><strong>Question ${index + 1}:</strong> ${result.question}</p>
+//       <p>Your Answer: <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedAnswer}</span></p>
+//       <p>Correct Answer: ${result.correctAnswer}</p>
+//     `;
+//     resultsElement.appendChild(resultItem);
+//   });
+// }
+
 function showResults() {
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
   document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
   
   const resultsElement = document.getElementById("comparison");
-  resultsElement.innerHTML = "<h3>Your Answers Compared to Correct Answers:</h3>";
+  resultsElement.innerHTML = "<h3>Your First Choices Compared to Correct Answers:</h3>";
   
   results.forEach((result, index) => {
     const resultItem = document.createElement("div");
     resultItem.classList.add("result-item");
     resultItem.innerHTML = `
       <p><strong>Question ${index + 1}:</strong> ${result.question}</p>
-      <p>Your Answer: <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedAnswer}</span></p>
+      <p>Your First Choice: <span style="color: ${result.isCorrectFirstChoice ? 'green' : 'red'}">${result.firstChoice}</span></p>
       <p>Correct Answer: ${result.correctAnswer}</p>
     `;
     resultsElement.appendChild(resultItem);
