@@ -14,10 +14,12 @@ const questions = [
   let shuffledQuestions;
   let currentQuestionIndex = 0;
   let score = 0;
+  let streak = 0;
+  let hintUsed = false;
+  let timer;
   let username = "";
   let results = [];
   
-  // Function to shuffle questions array
   function shuffleQuestions() {
     return questions
       .map(question => ({ ...question, sort: Math.random() }))
@@ -42,6 +44,10 @@ const questions = [
   }
   
   function loadQuestion() {
+    clearTimeout(timer); // Reset timer for the new question
+    document.getElementById("timer").innerText = "15";
+    document.getElementById("hint").disabled = hintUsed;
+    
     const questionElement = document.getElementById("question");
     const answersElement = document.getElementById("answers");
     const questionNumberElement = document.getElementById("question-number");
@@ -60,27 +66,59 @@ const questions = [
     });
   
     progressElement.style.width = ((currentQuestionIndex + 1) / shuffledQuestions.length) * 100 + "%";
+    startTimer();
+  }
+  
+  function startTimer() {
+    let timeLeft = 15; // 15 seconds per question
+    document.getElementById("timer").innerText = timeLeft;
+    timer = setInterval(() => {
+      timeLeft--;
+      document.getElementById("timer").innerText = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        showFeedback(false);
+      }
+    }, 1000);
   }
   
   function selectAnswer(index) {
+    clearInterval(timer); // Stop timer when an answer is selected
     const currentQuestion = shuffledQuestions[currentQuestionIndex];
-  
-    // Store the user's answer and correct answer
+    const isCorrect = index === currentQuestion.correct;
+    
     results.push({
       question: currentQuestion.question,
       selectedAnswer: currentQuestion.answers[index],
       correctAnswer: currentQuestion.answers[currentQuestion.correct],
-      isCorrect: index === currentQuestion.correct
+      isCorrect: isCorrect
     });
   
-    if (index === currentQuestion.correct) {
+    if (isCorrect) {
       score++;
+      streak++;
+    } else {
+      streak = 0;
     }
-    
-    document.querySelectorAll("#answers button").forEach(btn => (btn.disabled = true));
+  
+    showFeedback(isCorrect);
+  }
+  
+  function showFeedback(isCorrect) {
+    const feedbackElement = document.getElementById("feedback");
+    if (isCorrect) {
+      feedbackElement.innerText = `Correct! Keep it up, ${username}!`;
+      feedbackElement.style.color = "green";
+    } else {
+      const correctAnswer = shuffledQuestions[currentQuestionIndex].answers[shuffledQuestions[currentQuestionIndex].correct];
+      feedbackElement.innerText = `Incorrect. The correct answer was: ${correctAnswer}.`;
+      feedbackElement.style.color = "red";
+    }
+    setTimeout(nextQuestion, 2000); // Show feedback briefly before moving to next question
   }
   
   function nextQuestion() {
+    feedbackElement.innerText = ""; // Clear feedback
     currentQuestionIndex++;
     if (currentQuestionIndex < shuffledQuestions.length) {
       loadQuestion();
@@ -89,11 +127,19 @@ const questions = [
     }
   }
   
+  function useHint() {
+    if (!hintUsed) {
+      hintUsed = true;
+      alert(`Hint: The correct answer starts with "${shuffledQuestions[currentQuestionIndex].answers[shuffledQuestions[currentQuestionIndex].correct][0]}"`);
+      document.getElementById("hint").disabled = true;
+    }
+  }
+  
   function showResults() {
     document.getElementById("quiz").classList.add("hidden");
     document.getElementById("result").classList.remove("hidden");
     document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
-  
+    
     const resultsElement = document.getElementById("comparison");
     resultsElement.innerHTML = "<h3>Your Answers Compared to Correct Answers:</h3>";
     
@@ -112,6 +158,8 @@ const questions = [
   function restartQuiz() {
     currentQuestionIndex = 0;
     score = 0;
+    streak = 0;
+    hintUsed = false;
     results = [];
     document.getElementById("result").classList.add("hidden");
     document.getElementById("login").classList.remove("hidden");
