@@ -93,31 +93,24 @@ In my css file I have used variables to declare colours, and then used these thr
  * I have used --hover-blue: #144a7a;
 * I have used  --timer-light-blue: #d9edf7;
 
+* Background Colors: The primary blue is used as the body background, while light gray backgrounds are used for quiz cards and result sections to maintain readability.
+* Button and Hover Effects: Buttons use the primary green on hover for interactivity.
+* Feedback Colors: Green and red are used to indicate correct and incorrect answers, making it easy for users to see their performance.
+* Timer Styling: A soft blue shade is used for the timer to make it easy to read against the quiz card background.
+* Progress Bar: Gray and Green is used as an accent for the progress bar, visually representing quiz advancement.
+This scheme keeps the quiz interface vibrant, visually consistent, and reflective of Rwanda's national colors. 
 
 ### Typography
 
-Google Fonts was used to import the chosen fonts for use in the site.
-
-* For the Page Title I have used the google font [Almendra](https://fonts.google.com/specimen/Almendra?preview.text=The%20Quiz%20Arms%20THE%20QUIZ%20ARMS&preview.text_type=custom&query=almendra). Almendra is based on a calligraphy style and I have chosen it as it looks like the type of font you would see on a pubs name sign, slightly medieval looking and grand.
-
-![Almendra Font Example](documentation/almendra.webp)
-
-* For the body of the page I have used the google font [Quicksand](https://fonts.google.com/specimen/Quicksand?preview.text=The%20Quiz%20Arms%20THE%20QUIZ%20ARMS&preview.text_type=custom&query=quicksand). QuickSand is a sans-serif font which has lovely clean lines. I have chosen to use a sans-serif font for the body of the page as studies have found that sans-serif fonts are generally more legible to read on a screen.
-
-![Quicksand Font Example](documentation/quicksand.webp)
+* For the quiz text, i have used font-family: Arial, sans-serif.
 
 ### Imagery
 
-As the website is called The Quiz Arms, I wanted to use an image for the page background of a pub to give the user the feeling that they are participating in a pub quiz.
+As the website is called The Visit Rwanda Quiz, I used an image of the Rwandan flag as the background image to give the user the feeling that the quiz is really about this land they want to visit.
 
 ### Wireframes
 
-Wireframes were created for mobile, tablet and desktop using balsamiq.
-
-![Home Page](documentation/wireframes/homewireframe.webp)
-![Difficulty Page](documentation/wireframes/difficultywireframe.webp)
-![Game Page](documentation/wireframes/gamewireframe.webp)
-![High Scores Page](documentation/wireframes/highscorewireframe.webp)
+No wireframe at this time as i did not have enough time to do this.
 
 ### Features
 
@@ -129,17 +122,6 @@ Wireframes were created for mobile, tablet and desktop using balsamiq.
 - **Responsive Design**: The application is designed to work on various devices, including desktops, tablets, and mobile phones.
 - **Rwandan Flag Background**: The quiz is visually enhanced with the colors of the Rwandan flag.
 
-
-* A favicon in the browser tab.
-
-  ![favicon](documentation/favicon-image.webp)
-
-* The title of the site at the top of every page. This title also acts as a link back to the home page.
-  ![The Quiz Arms Title](documentation/the-quiz-arms-banner.png)
-
-* Every page will display a custom cursor when on a button. This feature is not available on mobile touch devices.
-
-![Custom Cursor](documentation/features/custom-cursor.gif)
 
 #### The Home Page
 
@@ -169,17 +151,15 @@ If the user takes more than 15 seconds without selecting an answer, there will c
 
 #### The 500 Error Page
 
-The 500 error page displays the sites names as a title, which also acts as a link back to the home page. Within the container is an error message that tells the user sorry there seems to be an issue retrieving the quiz data. Two buttons for the home page and the high scores page are below. I did not add the play game button here, as a user will been directed to this page if there is an error calling the API.
-
-![500 Error Page](documentation/features/500.png)
+No error page was made. to be made in the next iteration.
 
 #### Future Implementations
 
 In future implementations I would like to:
 
 1. Give users the option to select the amount of questions in their quiz.
-2. Look into making the quiz a multiplayer game, so that it could be played by teams, which would make the quiz even more like a pub quiz.
-3. Create a back end database to enable me to store scores which would then allow you to see how you scored against other players.
+2. Add some historical information on some questions that could be displayed to the user if the user want it so.
+3. Create a back end database to enable me to store scores which would then allow you to see how you scored in previous quizes.
 4. Look further into the accessibility for people with colour blindness, perhaps by adding symbols such as a tick or cross next to the answer when they are checked.
 
 ### Accessibility
@@ -190,15 +170,6 @@ I have been mindful during coding to ensure that the website is as accessible fr
 * Using a hover state on all buttons on the site to make it clear to the user if they are hovering over a button.
 * Choosing a sans serif font for the site - these fonts are suitable for people with dyslexia.
 * Ensuring that there is a sufficient colour contrast throughout the site.
-
-![contrast button](documentation/contrast-btn.png) ![Contrast button hover](documentation/contrast-btn-hover.png) ![contrast text](documentation/contrast-text.png)
-
-As the site relies on colour to display to the user whether an answer is correct or incorrect, I was interested to see what this would look like for someone with red/green colour blindness. I used the chrome extension [Web Disability Simulator](https://chrome.google.com/webstore/detail/web-disability-simulator/olioanlbgbpmdlgjnnampnnlohigkjla) to be able to see what someone with red/green colour blindness would see.
-
-In a future implementation I think it would be a great accessibility feature to also add a symbol such as a tick or cross on the answer button to enable people who are colour blind to also be able to access the quiz easier. Each of the images below have whether they are correct/incorrect in the name. Can you tell which one is which?
-
-![Colour blindness (red/green) correct answer](documentation/rg-colour-blind-correct.png)
-![Colour blindness (red/green) incorrect answer](documentation/rg-colour-blind-incorrect.png)
 
 - - -
 
@@ -214,15 +185,12 @@ HTML, CSS, Javascript
 
 ### Frameworks, Libraries & Programs Used
 
-* [Balsamiq](https://balsamiq.com/) - Used to create wireframes.
 
 * [Git](https://git-scm.com/) - For version control.
 
 * [Github](https://github.com/) - To save and store the files for the website.
 
 * [GitPod](https://gitpod.io/) - IDE used to create the site.
-
-* [Google Fonts](https://fonts.google.com/) - To import the fonts used on the website.
 
 
 
@@ -232,20 +200,9 @@ HTML, CSS, Javascript
 
 * [Birme](https://www.birme.net/) To resize images and convert to webp format.
 
-* [Favicon.io](https://favicon.io/) To create favicon.
+
 
 * [Am I Responsive?](http://ami.responsivedesign.is/) To show the website image on a range of devices.
-
-* [Shields.io](https://shields.io/) To add badges to the README
-
-* [Open Trivia DataBase](https://opentdb.com/) - API used for the trivia questions.
-
-* [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) - a google chrome extension to enable you to view JSON as raw data or parsed.
-
-* [Web Disability Simulator](https://chrome.google.com/webstore/detail/web-disability-simulator/olioanlbgbpmdlgjnnampnnlohigkjla) - a google chrome extension that allows you to view your site as people with accessibility needs would see it.
-
-* [Webpage Spell-Check](https://chrome.google.com/webstore/detail/webpage-spell-check/mgdhaoimpabdhmacaclbbjddhngchjik/related) - a google chrome extension that allows you to spell check your webpage. Used to check the site and the readme for spelling errors.
-
 - - -
 
 ## Deployment & Local Development
@@ -287,31 +244,22 @@ To clone the repository:
 
 ## Testing
 
-Please refer to [TESTING.md](TESTING.md) file for all testing carried out.
+### HTML Validator
+* Passed
+![HTML Validator](./assets/images/testing/htmlValidated.png)
+
+### CSS Validator
+* Passed
+![HTML Validator](./assets/images/testing/cssvalidator.png)
 
 ### Solved Bugs
 
-| No | Bug | How I solved the issue |
-| :--- | :--- | :--- |
-| 1 | An error was displaying in the console when next was clicked after the first question, stating that results wasn't defined. | Data was defined in the callApi(), so couldn't be accessed as it was in local scope rather than global scope. By defining data globally and then passing the data as a parameter into the getQuestion() in the nextQuestion() solved this. |
-| 2 | The Questions being pulled in from the JSON have HTML entity characters that are not escaped and therefore display incorrectly with symbols in place of the correct characters. ![Characters not escaping correctly in the JSON data](documentation/characters-not-escaped.webp) | After a lot of research into escaping characters, I came across a post on slack that mentioned using innerHTML rather than innerText. Once I changed the answers to innerHTML the characters are now displaying correctly. |
-| 3 | I have the local storage set up to save the final score as mostRecentScore. However when completing a game and submitting the team name the score added to the high scores section would be the previous score and not the most recent score. | After a lot of research to try and find out why this was happening I went over the code again and decided to see if I changed mostRecentScore in the scoreLog to score it would make a difference. By changing this, I have solved the issue and it now pulls the most recent score achieved. |
-| 4 | Players were able to select an answer which would then display whether correct or incorrect. However they could still click on the answers which meant they could click all the answers to receive the points.| I researched a way to disable the buttons and initially found that I could use answer1.disabled = true; This worked, however it added quite a bit of code, as I had to add this for each button. Further research led me to find [this article](https://blog.revillweb.com/jquery-disable-button-disabling-and-enabling-buttons-with-jquery-5e3ffe669ece) which showed how to use jQuery and the class on the buttons to enable and disable them all at the same time. This then allows me to enable the buttons when a new question has been populated and once a selection has been made, the answer buttons are disabled until the user clicks next to advance onto the next question. |
-| 5 | There was an issue with the data-correct not always being removed correctly from questions, which meant that incorrect answers were displaying as correct | I changed the way the data-correct attribute was removed from the answers, by using the same a for loop similar to what was used to add the data-correct attribute. I also changed the for innerText in the for loop to be innerHTML so that it was correctly reading the same as what was displayed on the button. |
-| 6 | If a user selected an incorrect answer and the correct answer contained HTML entity characters (such as /&#(\d+);/g) the correct button styling would not be applied to the displayCorrectAnswer variable and a error would display in the console. This would then prevent the user from progressing in the quiz as the next button would not display for them to move on.![Bug 6](documentation/bug-6.png) | I adjusted line 161 to use innerHTML rather than innerText, however the issue persisted. I looked for an answer online but struggled to find anything that would help. I then reached out to Bim Williams on Slack who is an alumni on the course and asked to run the problem past him. He suggested adding a function that would decode the HTML entity and then apply that function within line 161. The function takes the HTML entity characters and replaces them with the correct characters. I will be researching this topic further in my spare time to gain a deeper understanding of it. |
+* several bugs have been fixed during the development.
+
 
 ### Known Bugs
 
-* When viewing on screens that use touch rather than a cursor, the colour change for the answer button selected is not immediately obvious as the hover state remains on the button. If the user clicks away from the button the colour can then been seen.
-
-  ![Touch Button Colour](documentation/touch-button-colour.gif)
-
-* There is a a warning displaying in the console on the live page. This error seems to be because GitHub hosted pages disable googles 3rd party cookie alternative FLoC, which then throws this error. The error doesn't affect the site in any way.
-
-  ![Console warning](documentation/interest-cohort-error.png)
-
-* When friends tested the site they found that very rarely a game will get stuck on a question, and it will not populate a new question but the question no counter continues to increase. This issue only seems to be if a large number of games are played consecutively, possibly using up the questions in the API. I have not been able to replicate this issue to troubleshoot further.
-  ![Question overloaded](documentation/questions-depleted.gif)
+* Usename input box to be adjusted and make it bigger as the start quiz button.
 
 - - -
 
@@ -320,25 +268,17 @@ Please refer to [TESTING.md](TESTING.md) file for all testing carried out.
 
 ### Code Used
 
-* I used [this You Tube tutorial](https://www.youtube.com/watch?v=XH5OW46yO8I) to learn how to create a modal for the how to play section.
-
-* As the API I used for the questions declared the correct answer and then had an array of incorrect answers, I had to find a way to shuffle the answers together so that the correct answer wouldn't always appear on the same button. Research led me to the Fisher-Yates Shuffle. Other methods of shuffling can favour some items in the array more than others, however the Fisher Yates Shuffle allows for a more even spread of probability of the answer being placed on each button. I used the following [YouTube tutorial](https://www.youtube.com/watch?v=eATLMjs7y4s&list=PL5egNEXQTWmFHAoWFVRLNAvD-9zzyWVxA&index=3) to further adapt the shuffle I had researched on W3Schools to work with the data I had.
-
-As the JavaScript modules of the Code Institute Diploma did not cover local storage, I had to do a bit of research into this topic myself in order to set up the high scores section of my site.
-
-* I used this [video tutorial](https://www.youtube.com/watch?v=DFhmNLKwwGw&list=PLDlWc9AfQBfZIkdVaOQXi1tizJeNJipEx&index=9) on YouTube by [James Q Quick](https://www.youtube.com/channel/UC-T8W79DN6PBnzomelvqJYw) which taught me to save the team name and score to an object, that would then be saved into an array in local storage. It also explained how to sort the items in the array into descending score order, and then to splice the array, I have used the MAX_HIGH_SCORES as my point to splice.
-
-* I used this [video tutorial](https://www.youtube.com/watch?v=jfOv18lCMmw&list=PLDlWc9AfQBfZIkdVaOQXi1tizJeNJipEx&index=10) on YouTube by [James Q Quick](https://www.youtube.com/channel/UC-T8W79DN6PBnzomelvqJYw) to learn how to insert the local storage into the high scores page.
+* I used some markdown code provided in the template of README file
+* some portions of code were inspired by AI
 
 ### Content
 
-All questions for my site were pulled from [The Open Trivia Database](https://opentdb.com/) using their API.
+All questions for are in accordance with the history of Rwandaa as public domain.
 
-All other content for the site, such as introduction messages and instructions were written by myself.
 
 ### Media
 
-[Page background image of a pub](https://pixabay.com/photos/bar-pub-cafe-establishment-stools-2209813/)
+[Page background image of Rwanda  taken from wikipedia](https://en.wikipedia.org/wiki/File:Flag_of_Rwanda.svg)
 
 ### Acknowledgments
 
@@ -350,7 +290,7 @@ I would like to acknowledge the following people:
 
 * The Code Institute Slack channel Peer Code Review - Thank you to everyone who took the time to play the quiz and look over the code.
 
-* Special thanks to online resources for providing quiz-related information.
+* Special thanks to online resources and AI for providing quiz-related information.
 
 Otherwise, 
 * Inspired by the beauty and culture of Rwanda.

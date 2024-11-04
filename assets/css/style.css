@@ -106,6 +106,7 @@ body {
   margin: 0;
   padding: 10px;
   background-image: url('../images/rwandaFlag.png'); 
+  background-color: var(--primary-blue);
   background-size: cover;
   background-position: center;
   text-align: center;
