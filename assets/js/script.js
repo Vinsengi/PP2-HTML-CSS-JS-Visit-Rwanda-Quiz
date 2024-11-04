@@ -30,7 +30,7 @@ function shuffleQuestions() {
     });
 }
 
-function startQuiz() {
+function startQuiz) {
   const nameInput = document.getElementById("username").value;
   if (nameInput.trim() === "") {
     alert("Please enter your name.");
