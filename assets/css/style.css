@@ -7,8 +7,9 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 10px;
-    background: linear-gradient(to bottom, #2064a8 33%, #f7d117 33%, #f7d117 66%, #007849 66%);
-    /* Rwandan flag colors: Blue, Yellow, Green */
+    background-image: url('../images/rwandaFlag.png'); /* Replace with actual path */
+    background-size: cover;
+    background-position: center;
     text-align: center;
     box-sizing: border-box;
   }
@@ -23,8 +24,8 @@ body {
     width: 100%;
     max-width: 500px;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin: 20px;
     box-sizing: border-box;
@@ -69,7 +70,7 @@ body {
     width: 100%;
     margin: 5px 0;
     padding: 10px;
-    background-color: #eee;
+    background-color:grey;
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
