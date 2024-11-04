@@ -252,6 +252,10 @@ To clone the repository:
 * Passed
 ![HTML Validator](./assets/images/testing/cssvalidator.png)
 
+### Performance testing on mobile devices - with Lighthouse
+* Passed
+![APerformance Testing with Lighthouse](./assets/images/testing/accessibility-mobile-testing.png)
+
 ### Solved Bugs
 
 * several bugs have been fixed during the development.
@@ -260,6 +264,9 @@ To clone the repository:
 ### Known Bugs
 
 * Usename input box to be adjusted and make it bigger as the start quiz button.
+* on mobile devices, the login input box seems attached to the start quiz button and that doesn't look nice.
+
+![Future bug fix](./assets/images/testing/futurebugtobefixed.png)
 
 - - -
 

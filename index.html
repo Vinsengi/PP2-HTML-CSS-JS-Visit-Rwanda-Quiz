@@ -11,6 +11,7 @@
 <body>
     <div id="login">
         <h2>Welcome to the Visit Rwanda Quiz!</h2>
+        <label for="username">Enter your name</label>
         <input type="text" id="username" placeholder="Enter your name">
         <button onclick="startQuiz()">Start Quiz</button>
     </div>
@@ -21,7 +22,7 @@
             <div id="progress"></div>
         </div>
         <p id="timer">15</p> <!-- Countdown timer -->
-        <h2 id="question"></h2>
+        <h2 id="question">q</h2>
         <div id="answers"></div>
         <p id="feedback"></p> <!-- Feedback after each question -->
         <button id="hint" onclick="useHint()">Use Hint</button> <!-- Hint button -->
