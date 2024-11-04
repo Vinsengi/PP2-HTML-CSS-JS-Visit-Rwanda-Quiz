@@ -1,8 +1,8 @@
 # The Visit Rwanda Quiz
 
-![The Visit Rwanda Quiz shown on a variety of screen sizes](assets/images/the-quiz-arms.png)
+![The Visit Rwanda Quiz shown on a variety of screen sizes](./assets/images/amiresponsiveimage.png)
 
-Visit the deployed site: [The Visit Rwanda Quiz](https://kera-cudmore.github.io/TheQuizArms/)
+Visit the deployed site: [The Visit Rwanda Quiz](https://vinsengi.github.io/Visit-Rwanda-Quiz_PP2/)
 
 ## Description
 The Rwandan Quiz Application is a fun and interactive way to test your knowledge about Rwanda. It features 11 questions that cover various aspects of Rwandan culture, geography, history, and more. The application includes user login, a countdown timer for each question, a progress bar, and a scoring system that provides feedback on your answers at the end of the quiz.
@@ -47,7 +47,7 @@ The Rwandan Quiz Application is a fun and interactive way to test your knowledge
   * [Acknowledgments](#acknowledgments)
 
 - - -
-![The Quiz Arms Banner](documentation/the-quiz-arms-banner.png)
+
 
 ## User Experience (UX)
 
@@ -79,16 +79,20 @@ To provide a challenging quiz to entertain online users
 
 ### Colour Scheme
 
-As the pages of the site have a background image, I wanted to keep the colour scheme used on the site quite small so as to not overwhelm users. Red and green  are very typical colours in traditional British public houses, with the red & green used for upholstery.
+As the pages of the site have a background image (Rwandan Flag to help user notice which country), I wanted to keep the colour scheme used on the site quite small so as to not overwhelm users. 
 
-In my css file I have used variables to declare colours, and then used these throughout the css file. I was recently introduced to this method during a hackathon - it is a useful convention to use as it allows you to alter the colour throughout the website if you decide to update a colour, by changing the colour once in the variable.
+In my css file I have used variables to declare colours, and then used these throughout the css file, i have also used none valiable colors in css.
 
-* I have used `#f5f5f5` & `#000000` as the primary and secondary colours used for the sites text.
-* I have used `#292929` as the overlay used over the sites background image.
-* I have used `#a50c3c` for the border of the modal and to display the wrong answers.
-* I have used `#047638` to display the correct answer.
+* I have used  --primary-blue: #1D70B8;
+ * I have used --primary-green:green; for the progress bar
+ * I have used --accent-yellow: #FAD201;
+ * I have used --success-green: #20603D;
+ * I have used --error-red: #D62828;
+ * I have used --text-dark: #333333;
+ * I have used --background-gray: #F4F4F4;
+ * I have used --hover-blue: #144a7a;
+* I have used  --timer-light-blue: #d9edf7;
 
-  ![The Quiz Arms Color Scheme](documentation/color-scheme.webp)
 
 ### Typography
 
@@ -139,43 +143,29 @@ Wireframes were created for mobile, tablet and desktop using balsamiq.
 
 #### The Home Page
 
-The home page of The Quiz Arms displays the sites name as a title and then a container which holds some welcome text, including alerting the users that they can navigate back to the home page at any time by clicking on the page name. Below this are three buttons, how to play, play and high scores.
-
-![Home page image](documentation/features/index.png)
-
-The how to play  button opens a modal showing the user how to play the game. The modal contains a close button which will close the modal, and show the home page again.
-
-![Modal open image](documentation/features/modal.png)
-
-The play button will redirect the user to the game page to select the difficulty of their quiz and the high Scores button redirects the user to the high scores page.
+as soon as you land to the quiz area, you start the quiz just after giving your name in. No navigations involved.
 
 #### The Game Page
 
-The game page displays the sites name as a title. This also acts as a link back to the home page. Initially on the game page you will be shown a container with three buttons to select the difficulty of the quiz the user can choose from.
+The quiz page displays the questions (11). every question has 15 seconds timer which stops as long as the user select his/her first choice answer.
 
-![Image of the game page difficulty selection buttons](documentation/features/difficulty.png)
+![Image of the quiz page ](./assets/images/example-questions.png)
 
-Once the user has selected their difficulty they will then be shown the quiz area. The quiz area contains the question and the 4  answer choices.
+#### The Quiz area (beginning)
+![Image of quiz area](./assets/images/quizarea.png)
 
-when a user selects an answer, they will then be prevented from selecting any more answers. The quiz area border and the button selected will change styles depending on whether the answer selected was correct or incorrect. If the answer selected was correct, the score counter will add 10 to the score total. When the user clicks the next button the question no counter will increase by 1. If the user selects the wrong answer, the button selected will display red, and the correct answer will display as green.
 
-![Image of quiz area](documentation/features/quiz.png)
 
-Once a user has answered the 15 questions they will be taken to the end of the game which will allow them to enter their team name and submit it to be entered onto the high scores page if it is in the top 10 scores. The submit button is disabled by default to prevent the user from submitting without a team name. This is made clear to the user as the cursor will show not allowed when hovered over the submit button.
+#### The Scores Page
 
-![End of game](documentation/features/end.png)
+![Scores Page Image](./assets/images/scorepage.png)
 
-#### The High Scores Page
+#### The alert when time is over
 
-The high scores page displays the sites name as a title. This also acts as a link back to the home page. The page then displays the high scores recorded - showing the team name a user chooses and their score. The high scores page will list the top ten scores recorded. Underneath the high scores are two buttons to allow the user to play again or be redirected to the home page.
+If the user takes more than 15 seconds without selecting an answer, there will come an alert that show that 15 seconds are over and by clicking on "OK", moves the user to the next question.
 
-![High Scores Page Image](documentation/features/highscores.png)
-
-#### The 404 Error Page
-
-The 404 error page displays the sites name as a title. This also acts as a link back to the home page. Within the page container there is a sorry message explaining to the user that there has been an error directing them to the page they were looking for. The user is then given a choice of three buttons to redirect them to other pages on the site, the home page, the games page and the high scores page.
-
-![Error page image](documentation/features/404.png)
+![Time is over Alert](./assets/images/timeoveralert.png)
+![Time is over Alert](./assets/images/timeupalert.png)
 
 #### The 500 Error Page
 
@@ -262,12 +252,12 @@ HTML, CSS, Javascript
 
 ### Deployment
 
-The site is deployed using GitHub Pages - [The Quiz Arms](https://kera-cudmore.github.io/TheQuizArms/).
+The site is deployed using GitHub Pages - [The Visit Rwanda Quiz](https://vinsengi.github.io/Visit-Rwanda-Quiz_PP2/).
 
 To Deploy the site using GitHub Pages:
 
 1. Login (or signup) to Github.
-2. Go to the repository for this project, [kera-cudmore/TheQuizArms](https://github.com/kera-cudmore/TheQuizArms).
+2. Go to the repository for this project, [The Visit Rwanda Quiz](https://vinsengi.github.io/Visit-Rwanda-Quiz_PP2/).
 3. Click the settings button.
 4. Select pages in the left hand navigation menu.
 5. From the source dropdown select main branch and press save.
@@ -280,7 +270,7 @@ To Deploy the site using GitHub Pages:
 To fork the repository:
 
 1. Log in (or sign up) to Github.
-2. Go to the repository for this project, [kera-cudmore/TheQuizArms](https://github.com/kera-cudmore/TheQuizArms)
+2. Go to the repository for this project, [The Visit Rwanda Quiz](https://vinsengi.github.io/Visit-Rwanda-Quiz_PP2/)
 3. Click the Fork button in the top right corner.
 
 #### How to Clone
@@ -288,7 +278,7 @@ To fork the repository:
 To clone the repository:
 
 1. Log in (or sign up) to GitHub.
-2. Go to the repository for this project, [kera-cudmore/TheQuizArms](https://github.com/kera-cudmore/TheQuizArms)
+2. Go to the repository for this project, [The Visit Rwanda Quiz](https://vinsengi.github.io/Visit-Rwanda-Quiz_PP2/)
 3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
 4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
 5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
