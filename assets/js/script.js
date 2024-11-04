@@ -8,7 +8,8 @@ const questions = [
   { question: "Which famous mountain gorillas can be found in Rwanda?", answers: ["Silverback gorillas", "Western gorillas", "Golden gorillas", "Bamboo gorillas"], correct: 0 },
   { question: "What is the official name of Rwanda?", answers: ["Kingdom of Rwanda", "People's Republic of Rwanda", "Republic of Rwanda", "United States of Rwanda"], correct: 2 },
   { question: "Which national park is famous for gorilla trekking?", answers: ["Volcanoes National Park", "Serengeti National Park", "Kruger National Park", "Amboseli National Park"], correct: 0 },
-  { question: "What color is NOT in the Rwandan flag?", answers: ["Blue", "Red", "Yellow", "Green"], correct: 1 }
+  { question: "What color is NOT in the Rwandan flag?", answers: ["Blue", "Red", "Yellow", "Green"], correct: 1 },
+  { question: "Who is the current president of Rwanda?", answers: ["Paul Kagame", "Pasteur Bizimungu", "Louise Mushikiwabo", "Juvenal Habyarimana", "Grégoire Kayibanda", "Dominique Mbonyumutwa", "Théodore Sindikubwabo"], correct: 0 }
 ];
 
 let shuffledQuestions;
