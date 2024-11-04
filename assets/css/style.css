@@ -1,40 +1,114 @@
+/* Base body styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: blue;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
-
-.login-container, .quiz-container {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
+    background: linear-gradient(to bottom, #2064a8 33%, #f7d117 33%, #f7d117 66%, #007849 66%);
+    /* Rwandan flag colors: Blue, Yellow, Green */
     text-align: center;
-}
-
-.progress-bar {
-    height: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Hide elements initially */
+  .hidden {
+    display: none;
+  }
+  
+  /* Quiz container styles */
+  #login, #quiz, #result {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Progress bar styling */
+  #progress-bar {
+    width: 100%;
     background-color: #ddd;
+    height: 10px;
+    border-radius: 5px;
     margin-bottom: 20px;
-    border-radius: 10px;
     overflow: hidden;
-}
-
-.progress-bar div {
+  }
+  
+  #progress {
     height: 100%;
-    width: 0;
-    transition: width 0.3s;
-}
-
-.correct {
-    background-color: green;
-}
-
-.incorrect {
-    background-color: red;
-}
+    width: 0%;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+  }
+  
+  /* Button styles */
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  #answers button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  #answers button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 600px) {
+    body {
+      padding: 5px;
+    }
+  
+    #login, #quiz, #result {
+      padding: 15px;
+    }
+  
+    #progress-bar {
+      height: 8px;
+    }
+  
+    button, #answers button {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    #login, #quiz, #result {
+      padding: 10px;
+    }
+  
+    button, #answers button {
+      font-size: 0.85rem;
+      padding: 7px 10px;
+    }
+  }
+  
