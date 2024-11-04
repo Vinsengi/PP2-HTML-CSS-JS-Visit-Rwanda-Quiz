@@ -152,26 +152,6 @@ function useHint() {
   }
 }
 
-// function showResults() {
-//   document.getElementById("quiz").classList.add("hidden");
-//   document.getElementById("result").classList.remove("hidden");
-//   document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
-  
-//   const resultsElement = document.getElementById("comparison");
-//   resultsElement.innerHTML = "<h3>Your Answers Compared to Correct Answers:</h3>";
-  
-//   results.forEach((result, index) => {
-//     const resultItem = document.createElement("div");
-//     resultItem.classList.add("result-item");
-//     resultItem.innerHTML = `
-//       <p><strong>Question ${index + 1}:</strong> ${result.question}</p>
-//       <p>Your Answer: <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedAnswer}</span></p>
-//       <p>Correct Answer: ${result.correctAnswer}</p>
-//     `;
-//     resultsElement.appendChild(resultItem);
-//   });
-// }
-
 function showResults() {
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
