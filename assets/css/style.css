@@ -1,19 +1,4 @@
-Base body styles
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 10px;
-    background-image: url('../images/rwandaFlag.png'); /* Replace with actual path */
-    background-size: cover;
-    background-position: center;
-    text-align: center;
-    box-sizing: border-box;
-  }
-  
+ 
   /* Hide elements initially */
   .hidden {
     display: none;
@@ -24,28 +9,11 @@ body {
     width: 100%;
     max-width: 500px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.9); /*Semi-transparent background */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin: 20px;
     box-sizing: border-box;
-  }
-  
-  /* Progress bar styling */
-  #progress-bar {
-    width: 100%;
-    background-color: #ddd;
-    height: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-  
-  #progress {
-    height: 100%;
-    width: 0%;
-    background-color: #4caf50;
-    transition: width 0.3s ease;
   }
   
   /* Button styles */
@@ -60,10 +28,8 @@ body {
     width: 100%;
     max-width: 200px;
   }
-  
-  button:hover {
-    background-color: #45a049;
-  }
+   
+ 
   
   #answers button {
     display: block;
@@ -76,10 +42,10 @@ body {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.2s ease;
-  }
+  } 
   
   #answers button:hover {
-    background-color: #ddd;
+    background-color: green;
   }
   
   /* Responsive styles */
@@ -112,4 +78,134 @@ body {
       padding: 7px 10px;
     }
   }
-  
+
+
+/* aditional codes */
+
+  /* Root Variables */
+:root {
+  --primary-blue: #1D70B8;
+  --primary-green:green;
+  --accent-yellow: #FAD201;
+  --success-green: #20603D;
+  --error-red: #D62828;
+  --text-dark: #333333;
+  --background-gray: #F4F4F4;
+  --hover-blue: #144a7a;
+  --timer-light-blue: #d9edf7;
+}
+
+/* General Body Styling */
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 10px;
+  background-image: url('../images/rwandaFlag.png'); 
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Quiz Container */
+#quiz-container {
+  background-color: var(--background-gray);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styling */
+button {
+  background-color:var(--primary-blue);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color:var(--primary-green);
+}
+
+
+
+/* Progress Bar */
+#progress {
+  background-color: var(--primary-green);
+  height: 10px;
+  width: 0%;
+  border-radius: 3px;
+}
+/* Progress bar styling */
+#progress-bar {
+  width: 100%;
+  background-color: #ddd;
+  height: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+
+/* Feedback Styling */
+#feedback {
+  font-weight: bold;
+}
+
+#feedback.correct {
+  color: var(--success-green);
+}
+
+#feedback.incorrect {
+  color: var(--error-red);
+}
+
+/* Result Section */
+#result {
+  background-color: var(--background-gray);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Result Text */
+#result h3 {
+  color: var(--primary-blue);
+}
+
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid var(--primary-blue);
+}
+
+.result-item p {
+  margin: 5px 0;
+}
+
+
+/* Timer Styling - Circular Timer */
+#timer {
+  background-color: var(--timer-light-blue);
+  color: var(--text-dark);
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Makes it circular */
+  font-size: 1.2em; /* Adjust font size for readability */
+  margin: 10px auto; /* Center the timer horizontally */
+}
+
+
