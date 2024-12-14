@@ -9,57 +9,61 @@
 </head>
 
 <body>
-    
-    <button type="button" class="collapsible"><h3>QUIZ INSTRUCTIONS</h3></button>
-    <div id="instruction" class="content">
-        <p>Welcome to the quiz! Here are the instructions:</p>
-        <ul>
-            <li>Enter your name to start the quiz.</li>
-            <li>Answer each question within the given time.</li>
-            <li>Use the hint button if you need help.</li>
-            <li>Your score will be displayed at the end.</li>
-        </ul>
+    <div class="container">
+        <button type="button" class="collapsible">QUIZ INSTRUCTIONS</button>
+        <div class="content">
+            <p>Welcome to the quiz! Here are the instructions:</p>
+            <ul>
+                <li>Enter your name to start the quiz.</li>
+                <li>Answer each question within the given time.</li>
+                <li>Use the hint button if you need help.</li>
+                <li>Your score will be displayed at the end.</li>
+            </ul>
 
-        <p>Only the FIRST CHOICE COUNTS for the final results!</p>
-    </div>
-    <div id="login">
-        <h2>Welcome to the Visit Rwanda Quiz!</h2>
-        <label for="username">Enter your name</label>
-        <br>
-        <br>
-        <input type="text" id="username" placeholder="Enter your name">
-        <br>
-        <br>
-        <button onclick="startQuiz()">Start Quiz</button>
-    </div>
-
-    <div id="quiz" class="hidden">
-        <h3>Question <span id="question-number">1</span>/11</h3>
-        <div id="progress-bar">
-            <div id="progress"></div>
+            <p>Only the FIRST CHOICE COUNTS for the final results!</p>
         </div>
-        <p id="timer">15</p> <!-- Countdown timer -->
-        <h2 id="question">q</h2>
-        <div id="answers"></div>
-        <p id="feedback"></p> <!-- Feedback after each question -->
-        <br>
-        <br>
-        <button id="next" class="hidden" onclick="nextQuestion()">Next Question</button>
-        <br>
-        <br>
+        <div id="login">
+            <h2>Welcome to the Visit Rwanda Quiz!</h2>
+            <label for="username">Enter your name</label>
+            <br>
+            <br>
+            <input type="text" id="username" placeholder="Enter your name">
+            <br>
+            <br>
+            <button onclick="startQuiz()">Start Quiz</button>
+        </div>
 
-        <button id="hint" onclick="useHint()">Use Hint</button> <!-- Hint button -->
+        <div id="quiz" class="hidden">
+            <p>Only the FIRST CHOICE COUNTS for the final results!</p>
+            <h3>Question <span id="question-number">1</span>/11</h3>
+            <div id="progress-bar">
+                <div id="progress"></div>
+            </div>
+            <p id="timer">15</p> <!-- Countdown timer -->
+            <h2 id="question">q</h2>
+            <div id="answers"></div>
+            <p id="feedback"></p> <!-- Feedback after each question -->
+            <br>
+            <br>
+            <button id="next" class="hidden" onclick="nextQuestion()">Next Question</button>
+            <br>
+            <br>
+
+            <button id="hint" onclick="useHint()">Use Hint</button> <!-- Hint button -->
+        </div>
+
+
+        <div id="result" class="hidden">
+            <h2>Quiz Complete!</h2>
+            <p id="score"></p>
+            <div id="comparison"></div>
+            <br>
+            <br>
+            <button onclick="restartQuiz()">Restart Quiz</button>
+        </div>
+
     </div>
 
-
-    <div id="result" class="hidden">
-        <h2>Quiz Complete!</h2>
-        <p id="score"></p>
-        <div id="comparison"></div>
-        <br>
-        <br>
-        <button onclick="restartQuiz()">Restart Quiz</button>
-    </div>
 
 
 
