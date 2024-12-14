@@ -9,10 +9,18 @@
 </head>
 
 <body>
+    <div id="instruction">
+        <h3>INSTRUCTIONS</h3>
+        <p>Only the FIRST CHOICE COUNTS for the final results!</p>
+    </div>
     <div id="login">
         <h2>Welcome to the Visit Rwanda Quiz!</h2>
         <label for="username">Enter your name</label>
+        <br>
+        <br>
         <input type="text" id="username" placeholder="Enter your name">
+        <br>
+        <br>
         <button onclick="startQuiz()">Start Quiz</button>
     </div>
 
@@ -25,7 +33,11 @@
         <h2 id="question">q</h2>
         <div id="answers"></div>
         <p id="feedback"></p> <!-- Feedback after each question -->
+        <br>
+        <br>
         <button id="hint" onclick="useHint()">Use Hint</button> <!-- Hint button -->
+        <br>
+        <br>
         <button id="next" class="hidden" onclick="nextQuestion()">Next Question</button>
     </div>
 
@@ -34,6 +46,8 @@
         <h2>Quiz Complete!</h2>
         <p id="score"></p>
         <div id="comparison"></div>
+        <br>
+        <br>
         <button onclick="restartQuiz()">Restart Quiz</button>
     </div>
 
