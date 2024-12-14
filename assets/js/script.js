@@ -1,15 +1,69 @@
-const questions = [
-  { question: "What is the capital of Rwanda?", answers: ["Kigali", "Nairobi", "Dar es Salaam", "Kampala"], correct: 0 },
-  { question: "Which language is widely spoken in Rwanda?", answers: ["Swahili", "Kinyarwanda", "Amharic", "Zulu"], correct: 1 },
-  { question: "When did Rwanda gain independence?", answers: ["1962", "1975", "1980", "1990"], correct: 0 },
-  { question: "What is Rwanda known as?", answers: ["Land of Lakes", "Land of a Thousand Hills", "Land of Rivers", "Land of Gold"], correct: 1 },
-  { question: "What is the currency of Rwanda?", answers: ["Shilling", "Rwandan Franc", "Dollar", "Pound"], correct: 1 },
-  { question: "What is Rwanda's primary economic activity?", answers: ["Mining", "Agriculture", "Manufacturing", "Tourism"], correct: 1 },
-  { question: "Which famous mountain gorillas can be found in Rwanda?", answers: ["Silverback gorillas", "Western gorillas", "Golden gorillas", "Bamboo gorillas"], correct: 0 },
-  { question: "What is the official name of Rwanda?", answers: ["Kingdom of Rwanda", "People's Republic of Rwanda", "Republic of Rwanda", "United States of Rwanda"], correct: 2 },
-  { question: "Which national park is famous for gorilla trekking?", answers: ["Volcanoes National Park", "Serengeti National Park", "Kruger National Park", "Amboseli National Park"], correct: 0 },
-  { question: "What color is NOT in the Rwandan flag?", answers: ["Blue", "Red", "Yellow", "Green"], correct: 1 },
-  { question: "Who is the current president of Rwanda?", answers: ["Paul Kagame", "Pasteur Bizimungu", "Louise Mushikiwabo", "Juvenal Habyarimana", "Grégoire Kayibanda", "Dominique Mbonyumutwa", "Théodore Sindikubwabo"], correct: 0 }
+const coll = document.querySelector(".collapsible");
+coll.addEventListener("click", function () {
+  this.classList.toggle("active");
+  const content = this.nextElementSibling;
+  if (content.style.display === "block") {
+    content.style.display = "none";
+  } else {
+    content.style.display = "block";
+  }
+});
+
+const questions = [{
+    question: "What is the capital of Rwanda?",
+    answers: ["Kigali", "Nairobi", "Dar es Salaam", "Kampala"],
+    correct: 0
+  },
+  {
+    question: "Which language is widely spoken in Rwanda?",
+    answers: ["Swahili", "Kinyarwanda", "Amharic", "Zulu"],
+    correct: 1
+  },
+  {
+    question: "When did Rwanda gain independence?",
+    answers: ["1962", "1975", "1980", "1990"],
+    correct: 0
+  },
+  {
+    question: "What is Rwanda known as?",
+    answers: ["Land of Lakes", "Land of a Thousand Hills", "Land of Rivers", "Land of Gold"],
+    correct: 1
+  },
+  {
+    question: "What is the currency of Rwanda?",
+    answers: ["Shilling", "Rwandan Franc", "Dollar", "Pound"],
+    correct: 1
+  },
+  {
+    question: "What is Rwanda's primary economic activity?",
+    answers: ["Mining", "Agriculture", "Manufacturing", "Tourism"],
+    correct: 1
+  },
+  {
+    question: "Which famous mountain gorillas can be found in Rwanda?",
+    answers: ["Silverback gorillas", "Western gorillas", "Golden gorillas", "Bamboo gorillas"],
+    correct: 0
+  },
+  {
+    question: "What is the official name of Rwanda?",
+    answers: ["Kingdom of Rwanda", "People's Republic of Rwanda", "Republic of Rwanda", "United States of Rwanda"],
+    correct: 2
+  },
+  {
+    question: "Which national park is famous for gorilla trekking?",
+    answers: ["Volcanoes National Park", "Serengeti National Park", "Kruger National Park", "Amboseli National Park"],
+    correct: 0
+  },
+  {
+    question: "What color is NOT in the Rwandan flag?",
+    answers: ["Blue", "Red", "Yellow", "Green"],
+    correct: 1
+  },
+  {
+    question: "Who is the current president of Rwanda?",
+    answers: ["Paul Kagame", "Pasteur Bizimungu", "Louise Mushikiwabo", "Juvenal Habyarimana", "Grégoire Kayibanda", "Dominique Mbonyumutwa", "Théodore Sindikubwabo"],
+    correct: 0
+  }
 ];
 
 let shuffledQuestions;
@@ -22,7 +76,10 @@ let results = [];
 
 function shuffleQuestions() {
   return questions
-    .map(question => ({ ...question, sort: Math.random() }))
+    .map(question => ({
+      ...question,
+      sort: Math.random()
+    }))
     .sort((a, b) => a.sort - b.sort)
     .map(question => {
       delete question.sort;
@@ -101,7 +158,7 @@ function selectAnswer(index) {
   if (!firstChoiceRecorded) {
     firstChoiceRecorded = true;
     const isCorrectFirstChoice = index === currentQuestion.correct;
-    
+
     results.push({
       question: currentQuestion.question,
       firstChoice: currentQuestion.answers[index],
@@ -157,10 +214,10 @@ function showResults() {
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
   document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
-  
+
   const resultsElement = document.getElementById("comparison");
   resultsElement.innerHTML = "<h3>Your First Choices Compared to Correct Answers:</h3>";
-  
+
   results.forEach((result, index) => {
     const resultItem = document.createElement("div");
     resultItem.classList.add("result-item");
@@ -182,8 +239,9 @@ function restartQuiz() {
   results = [];
   shuffledQuestions = shuffleQuestions(); //Reload questions
   document.getElementById("result").classList.add("hidden");
-  document.getElementById("feedback").innerText="";
+  document.getElementById("feedback").innerText = "";
+  document.getElementById("login").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
   loadQuestion();
-  
+
 }

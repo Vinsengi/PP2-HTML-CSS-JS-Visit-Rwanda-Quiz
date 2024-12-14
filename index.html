@@ -9,8 +9,17 @@
 </head>
 
 <body>
-    <div id="instruction">
-        <h3>INSTRUCTIONS</h3>
+    
+    <button type="button" class="collapsible"><h3>QUIZ INSTRUCTIONS</h3></button>
+    <div id="instruction" class="content">
+        <p>Welcome to the quiz! Here are the instructions:</p>
+        <ul>
+            <li>Enter your name to start the quiz.</li>
+            <li>Answer each question within the given time.</li>
+            <li>Use the hint button if you need help.</li>
+            <li>Your score will be displayed at the end.</li>
+        </ul>
+
         <p>Only the FIRST CHOICE COUNTS for the final results!</p>
     </div>
     <div id="login">
@@ -38,7 +47,7 @@
         <button id="next" class="hidden" onclick="nextQuestion()">Next Question</button>
         <br>
         <br>
-      
+
         <button id="hint" onclick="useHint()">Use Hint</button> <!-- Hint button -->
     </div>
 
