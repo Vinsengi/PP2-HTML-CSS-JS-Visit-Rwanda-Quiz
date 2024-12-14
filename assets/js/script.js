@@ -186,7 +186,7 @@ function showFeedback(isCorrect) {
     feedbackElement.innerText = `Correct! Great job, ${username}!`;
     feedbackElement.style.color = "green";
   } else {
-    feedbackElement.innerText = "Incorrect. Try again!";
+    feedbackElement.innerText = "Incorrect. Try again to see the right question or move to the next question!";
     feedbackElement.style.color = "red";
   }
 }

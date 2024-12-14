@@ -46,6 +46,7 @@
  /* Quiz container styles */
  #login,
  #quiz,
+ #ka,
  #result {
    width: 100%;
    max-width: 500px;
