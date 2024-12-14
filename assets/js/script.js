@@ -48,6 +48,7 @@ let timer; // Timer variable
 
 function loadQuestion() {
   firstChoiceRecorded = false; // Reset for each new question
+  hintUsed = false; //to rest hint for every question
   document.getElementById("timer").innerText = "15"; // Reset timer display
   document.getElementById("hint").disabled = hintUsed;
 
@@ -173,11 +174,16 @@ function showResults() {
 }
 
 function restartQuiz() {
+  //location.reload();
   currentQuestionIndex = 0;
   score = 0;
   streak = 0;
   hintUsed = false;
   results = [];
+  shuffledQuestions = shuffleQuestions(); //Reload questions
   document.getElementById("result").classList.add("hidden");
-  document.getElementById("login").classList.remove("hidden");
+  document.getElementById("feedback").innerText="";
+  document.getElementById("quiz").classList.remove("hidden");
+  loadQuestion();
+  
 }
