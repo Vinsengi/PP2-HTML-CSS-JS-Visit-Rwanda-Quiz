@@ -108,6 +108,7 @@ function loadQuestion() {
   hintUsed = false; //to rest hint for every question
   document.getElementById("timer").innerText = "15"; // Reset timer display
   document.getElementById("hint").disabled = hintUsed;
+  document.getElementById("hint").classList.remove("hidden");
 
   const questionElement = document.getElementById("question");
   const answersElement = document.getElementById("answers");
@@ -178,6 +179,7 @@ function selectAnswer(index) {
   showFeedback(index === currentQuestion.correct);
   clearInterval(timer); // Stop the timer when an answer is selected
   document.getElementById("next").classList.remove("hidden"); // Show Next button
+  document.getElementById("hint").classList.add("hidden");
 }
 
 function showFeedback(isCorrect) {
@@ -195,7 +197,8 @@ function nextQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex < shuffledQuestions.length) {
     document.getElementById("feedback").innerText = ""; // Clear feedback
-    document.getElementById("next").classList.add("hidden"); // Hide Next button
+    document.getElementById("next").classList.remove("hidden"); // show Next button
+    document.getElementById("hint").classList.remove("hidden");
     loadQuestion();
   } else {
     showResults();
