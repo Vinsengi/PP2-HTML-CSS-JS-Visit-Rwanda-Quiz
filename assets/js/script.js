@@ -4,8 +4,10 @@ coll.addEventListener("click", function () {
   const content = this.nextElementSibling;
   if (content.style.display === "block") {
     content.style.display = "none";
+    this.innerText = "Show Quiz Instructions";
   } else {
     content.style.display = "block";
+    this.innerText = "Hide Quiz Instructions";
   }
 });
 
@@ -106,7 +108,7 @@ let timer; // Timer variable
 function loadQuestion() {
   firstChoiceRecorded = false; // Reset for each new question
   hintUsed = false; //to rest hint for every question
-  document.getElementById("timer").innerText = "15"; // Reset timer display
+  document.getElementById("timer").innerText = "20"; // Reset timer display
   document.getElementById("hint").disabled = hintUsed;
   document.getElementById("hint").classList.remove("hidden");
 
@@ -121,11 +123,24 @@ function loadQuestion() {
   answersElement.innerHTML = "";
 
   // Create answer buttons
+  // currentQuestion.answers.forEach((answer, index) => {
+  //   const button = document.createElement("button");
+  //   button.innerText = answer;
+  //   button.onclick = () => selectAnswer(index);
+  //   answersElement.appendChild(button);
+  // });
+
+  // Create radio buttons for answers
   currentQuestion.answers.forEach((answer, index) => {
-    const button = document.createElement("button");
-    button.innerText = answer;
-    button.onclick = () => selectAnswer(index);
-    answersElement.appendChild(button);
+    const label = document.createElement("label");
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = "answer";
+    input.value = index;
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(answer));
+    answersElement.appendChild(label);
+    answersElement.appendChild(document.createElement("br"));
   });
 
   progressElement.style.width = ((currentQuestionIndex + 1) / shuffledQuestions.length) * 100 + "%";
@@ -134,7 +149,7 @@ function loadQuestion() {
 }
 
 function startTimer() {
-  let timeLeft = 15; // Set timer for 15 seconds
+  let timeLeft = 20 ; // Set timer for 20 seconds
   document.getElementById("timer").innerText = timeLeft; // Display initial time
 
   // Clear any existing timer before starting a new one
@@ -156,31 +171,56 @@ function selectAnswer(index) {
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
 
   // Record the first answer selection only if it hasn’t been recorded yet
-  if (!firstChoiceRecorded) {
-    firstChoiceRecorded = true;
+ // if (!firstChoiceRecorded) {
+    //firstChoiceRecorded = true;
     const isCorrectFirstChoice = index === currentQuestion.correct;
 
     results.push({
       question: currentQuestion.question,
-      firstChoice: currentQuestion.answers[index],
+      selectedChoice: currentQuestion.answers[index],
       correctAnswer: currentQuestion.answers[currentQuestion.correct],
-      isCorrectFirstChoice: isCorrectFirstChoice
+      isCorrectFirstChoice: isCorrect
     });
 
-    if (isCorrectFirstChoice) {
-      score++;
-      streak++;
-    } else {
-      streak = 0;
-    }
-  }
+    // if (isCorrectFirstChoice) {
+    //   score++;
+    //   streak++;
+    // } else {
+    //   streak = 0;
+    // }
+  
 
   // Provide feedback for each answer attempt
-  showFeedback(index === currentQuestion.correct);
+  // showFeedback(index === currentQuestion.correct);
+  showFeedback(isCorrect);
   clearInterval(timer); // Stop the timer when an answer is selected
   document.getElementById("next").classList.remove("hidden"); // Show Next button
   document.getElementById("hint").classList.add("hidden");
 }
+
+function checkAnswer() {
+  const currentQuestion = shuffledQuestions[currentQuestionIndex];
+  const selectedRadio = document.querySelector("input[name='answer']:checked");
+
+  if (!selectedRadio) {
+    alert("Please select an answer before checking.");
+    return;
+  }
+
+  const selectedIndex = parseInt(selectedRadio.value);
+  const isCorrect = selectedIndex === currentQuestion.correct;
+
+  showFeedback(isCorrect);
+
+  // Lock the questions 
+  document.querySelectorAll("input[name='answer']").forEach(radio => {
+    radio.disabled = true;
+  });
+
+  // Prompt the user to click the next question button 
+  document.getElementById("feedback").innerText += " Please click the 'Next Question' button to continue.";
+}
+
 
 function showFeedback(isCorrect) {
   const feedbackElement = document.getElementById("feedback");
@@ -219,14 +259,14 @@ function showResults() {
   document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
 
   const resultsElement = document.getElementById("comparison");
-  resultsElement.innerHTML = "<h3>Your First Choices Compared to Correct Answers:</h3>";
+  resultsElement.innerHTML = "<h3>Your Choices Compared to Correct Answers:</h3>";
 
   results.forEach((result, index) => {
     const resultItem = document.createElement("div");
     resultItem.classList.add("result-item");
     resultItem.innerHTML = `
       <p><strong>Question ${index + 1}:</strong> ${result.question}</p>
-      <p>Your First Choice: <span style="color: ${result.isCorrectFirstChoice ? 'green' : 'red'}">${result.firstChoice}</span></p>
+      <p>Your First Choice: <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedChoice}</span></p>
       <p>Correct Answer: ${result.correctAnswer}</p>
     `;
     resultsElement.appendChild(resultItem);
