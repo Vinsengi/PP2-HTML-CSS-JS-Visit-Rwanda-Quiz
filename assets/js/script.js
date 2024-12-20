@@ -78,10 +78,7 @@ let results = [];
 
 function shuffleQuestions() {
   return questions
-    .map(question => ({
-      ...question,
-      sort: Math.random()
-    }))
+    .map(question => ({...question, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(question => {
       delete question.sort;
@@ -102,15 +99,16 @@ function startQuiz() {
   loadQuestion();
 }
 
-let firstChoiceRecorded = false; // Track if first choice has been recorded
+// let selectedChoiceRecorded = false; // Track if first choice has been recorded
 let timer; // Timer variable
 
 function loadQuestion() {
-  firstChoiceRecorded = false; // Reset for each new question
+  // firstChoiceRecorded = false; // Reset for each new question
   hintUsed = false; //to rest hint for every question
   document.getElementById("timer").innerText = "20"; // Reset timer display
   document.getElementById("hint").disabled = hintUsed;
   document.getElementById("hint").classList.remove("hidden");
+  document.getElementById("next").classList.remove("hidden");
 
   const questionElement = document.getElementById("question");
   const answersElement = document.getElementById("answers");
@@ -173,13 +171,13 @@ function selectAnswer(index) {
   // Record the first answer selection only if it hasn’t been recorded yet
  // if (!firstChoiceRecorded) {
     //firstChoiceRecorded = true;
-    const isCorrectFirstChoice = index === currentQuestion.correct;
+    const isCorrect = index === currentQuestion.correct;
 
     results.push({
       question: currentQuestion.question,
       selectedChoice: currentQuestion.answers[index],
       correctAnswer: currentQuestion.answers[currentQuestion.correct],
-      isCorrectFirstChoice: isCorrect
+      isCorrect: isCorrect
     });
 
     // if (isCorrectFirstChoice) {
@@ -266,7 +264,7 @@ function showResults() {
     resultItem.classList.add("result-item");
     resultItem.innerHTML = `
       <p><strong>Question ${index + 1}:</strong> ${result.question}</p>
-      <p>Your First Choice: <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedChoice}</span></p>
+      <p>Your Choice: <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedChoice}</span></p>
       <p>Correct Answer: ${result.correctAnswer}</p>
     `;
     resultsElement.appendChild(resultItem);
