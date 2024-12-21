@@ -121,7 +121,7 @@ function loadQuestion() {
   });
 
   // Reset feedback and timer for each new question
-  document.getElementById("feedback").innerText = "";
+  document.getElementById("feed").innerText = "";
   document.getElementById("timer").innerText = "15"; // Reset timer display
   selectedChoiceRecorded = false; // Reset choice tracking for the new questio
 
@@ -210,11 +210,6 @@ function selectAnswer(index) {
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
   const isCorrect = index === currentQuestion.correct;
 
-  // document.getElementById("next").disabled = false;
-  // Record the first answer selection only if it hasn’t been recorded yet
-  //  if (!selectedChoiceRecorded) {
-  //     ChoiceRecorded = true;
-
   results.push({
     question: currentQuestion.question,
     selectedChoice: currentQuestion.answers[index],
@@ -226,10 +221,6 @@ function selectAnswer(index) {
     score++;
   }
 
-
-  // Provide feedback for each answer attempt
-  // showFeedback(index === currentQuestion.correct);
-
   showFeedback(isCorrect);
   selectedChoiceRecorded = true; // Mark the choice as recorded
   clearInterval(timer); // Stop the timer when an answer is selected
@@ -240,10 +231,7 @@ function selectAnswer(index) {
   });
 
   enableNextButton(); // Ensure "Next" button is enabled after answering
-  // Enable next button after answering
-  // document.getElementById("next").classList.remove("hidden");
-  // document.getElementById("next").disabled = false; // enable next button
-  // document.getElementById("hint").classList.add("hidden");
+  
 }
 
 
@@ -252,14 +240,11 @@ function nextQuestion() {
   if (currentQuestionIndex < shuffledQuestions.length) {
     loadQuestion();
     document.getElementById("next").classList.add("hidden"); // Hide Next button initially
-      // document.getElementById("feedback").innerText = ""; // Clear feedback
-      // document.getElementById("hint").classList.remove("hidden");
-      // document.getElementById("next").disabled = false;
-      // loadQuestion();
   } else {
-    showResults();
+    showResults(); // This should be called at the end of the quiz
   }
 }
+
 
 function checkAnswer() {
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
@@ -284,12 +269,12 @@ function checkAnswer() {
 
   // Prompt the user to click the next question button 
   document.getElementById("next").classList.remove("hidden");
-  document.getElementById("feedback").innerText += " Please click the 'Next Question' button to continue.";
+  document.getElementById("feed").innerText += " Please click the 'Next Question' button to continue.";
 }
 
 
 function showFeedback(isCorrect) {
-  const feedbackElement = document.getElementById("feedback");
+  const feedbackElement = document.getElementById("feed");
   if (isCorrect) {
     feedbackElement.innerText = `Correct! Great job, ${username}!`;
     feedbackElement.style.color = "green";
@@ -309,30 +294,33 @@ function useHint() {
 }
 
 function showResults() {
+  
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
+  document.getElementById("hint").classList.add("hidden");
 
-  // Display score
-  document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
+// Display score
+document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
 
   // Calculate the percentage score
   const percentage = (score / shuffledQuestions.length) * 100;
 
-  let feedback = "";
+  let feedbackl = "";
   if (percentage >= 80) {
-    feedback = "Excellent! You did an amazing job!";
+    feedbackl = "Excellent! You did an amazing job!";
   } else if (percentage >= 50) {
-    feedback = "Good Job! Keep practicing to improve.";
+    feedbackl = "Good Job! Keep practicing to improve.";
   } else {
-    feedback = "Needs Improvement. Try again!";
+    feedbackl = "Needs Improvement. Try again!";
   }
 
+  
   // Display the feedback based on score
-  document.getElementById("feedback").innerText = feedback;
+  document.getElementById("feedback").innerText = feedbackl;
 
   // Populate comparison between answers and correct answers
   const resultsElement = document.getElementById("comparison");
-  resultsElement.innerHTML = "<h3>Your Choices Compared to Correct Answers:</h3>";
+  // resultsElement.innerHTML = "<h3>Your Choices Compared to Correct Answers:</h3>";
 
   results.forEach((result, index) => {
     const resultItem = document.createElement("div");
@@ -346,6 +334,7 @@ function showResults() {
   });
 }
 
+
 function restartQuiz() {
   //location.reload();
   currentQuestionIndex = 0;
@@ -355,7 +344,7 @@ function restartQuiz() {
   results = [];
   shuffledQuestions = shuffleQuestions(); //Reload questions
   document.getElementById("result").classList.add("hidden");
-  document.getElementById("feedback").innerText = "";
+  document.getElementById("feed").innerText = "";
   document.getElementById("login").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
   loadQuestion();

@@ -2,6 +2,9 @@
  .hidden {
    display: none;
  }
+ #result {
+  display: none;
+ }
 
  li {
   text-align: left;
