@@ -110,9 +110,11 @@ function startQuiz() {
   loadQuestion();
 }
 
+let hintUsedForCurrentQuestion = false;  // Track hint usage for each question
 
 function loadQuestion() {
-  //selectedChoice = false; // Reset for each new question
+  // Reset previous states for each new question
+  hintUsedForCurrentQuestion = false; // Reset hint for the current question
 
   // Reset answer selection and feedback
   document.querySelectorAll("input[name='answer']").forEach(radio => {
@@ -135,13 +137,7 @@ function loadQuestion() {
   questionElement.innerText = currentQuestion.question;
   answersElement.innerHTML = "";
 
-  // Create answer buttons
-  // currentQuestion.answers.forEach((answer, index) => {
-  //   const button = document.createElement("button");
-  //   button.innerText = answer;
-  //   button.onclick = () => selectAnswer(index);
-  //   answersElement.appendChild(button);
-  // });
+
 
   // Create radio buttons for answers
   currentQuestion.answers.forEach((answer, index) => {
@@ -166,19 +162,27 @@ function loadQuestion() {
   progressElement.style.width = ((currentQuestionIndex + 1) / shuffledQuestions.length) * 100 + "%";
 
   startTimer(); // Start the timer for this question
-  selectedChoiceRecorded = false; // Reset choice tracking
-  // hintUsed = false; //to rest hint for every question
-  // document.getElementById("timer").innerText = "15"; // Reset timer display
-  // document.getElementById("hint").disabled = hintUsed;
-  // document.getElementById("hint").classList.remove("hidden");
+
+  // Reset "Next" button state
   document.getElementById("next").classList.add("hidden"); // Hide "Next" button initially
   document.getElementById("next").disabled = true; // Disable "Next" button initially
+
+   // Enable the hint button for each question
+   document.getElementById("hint").disabled = false; // Re-enable hint button
+   document.getElementById("hint").classList.remove("hidden"); // Show hint button
+
+  selectedChoiceRecorded = false; // Reset choice tracking
+  //hintUsed = false; //to rest hint for every question
+  // document.getElementById("timer").innerText = "15"; // Reset timer display
+  // document.getElementById("hint").disabled = hintUsed;
+    
 }
 
 
 // Function to enable the "Next" button once an answer is selected
 function enableNextButton() {
-  if (selectedChoiceIndex !== -1) { // If an answer is selected
+  const isAnswerSelected = selectedChoiceIndex !== -1;
+  if (isAnswerSelected) { // If an answer is selected
     document.getElementById("next").disabled = false; // Enable "Next"
     document.getElementById("next").classList.remove("hidden"); // Show "Next" button
   }
@@ -231,7 +235,7 @@ function selectAnswer(index) {
   });
 
   enableNextButton(); // Ensure "Next" button is enabled after answering
-  
+
 }
 
 
@@ -243,6 +247,10 @@ function nextQuestion() {
   } else {
     showResults(); // This should be called at the end of the quiz
   }
+  // Reset selection state
+  selectedChoiceIndex = -1;
+  selectedChoiceRecorded = false;
+  
 }
 
 
@@ -285,53 +293,75 @@ function showFeedback(isCorrect) {
 }
 
 
+// function useHint() {
+//   if (!hintUsed) {
+//     hintUsed = true;
+//     alert(`Hint: The correct answer starts with "${shuffledQuestions[currentQuestionIndex].answers[shuffledQuestions[currentQuestionIndex].correct][0]}"`);
+//     document.getElementById("hint").disabled = true; // Disable hint button after use
+//   }
+// }
+
+
+// Function to use the hint
 function useHint() {
-  if (!hintUsed) {
-    hintUsed = true;
-    alert(`Hint: The correct answer starts with "${shuffledQuestions[currentQuestionIndex].answers[shuffledQuestions[currentQuestionIndex].correct][0]}"`);
-    document.getElementById("hint").disabled = true; // Disable hint button after use
+  if (!hintUsedForCurrentQuestion) {
+    hintUsedForCurrentQuestion = true; // Mark hint as used for the current question
+    const currentQuestion = shuffledQuestions[currentQuestionIndex];
+    const hint = currentQuestion.answers[currentQuestion.correct][0];  // Hint based on the first letter of the correct answer
+    alert(`Hint: The correct answer starts with "${hint}"`);
+
+    document.getElementById("hint").disabled = true; // Disable the hint button after it's used
   }
 }
 
+
 function showResults() {
-  
+
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
   document.getElementById("hint").classList.add("hidden");
+  document.getElementById("timer").classList.add("hidden");
+  document.getElementById("timer").disabled = true;
 
-// Display score
-document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
+
+  // Display score
+  document.getElementById("score").innerText = `${username}, all ${shuffledQuestions.length} questions answered!`;
 
   // Calculate the percentage score
   const percentage = (score / shuffledQuestions.length) * 100;
 
-  let feedbackl = "";
+  let feedback = "";
   if (percentage >= 80) {
-    feedbackl = "Excellent! You did an amazing job!";
+    feedback = "Excellent! You did an amazing job!";
   } else if (percentage >= 50) {
-    feedbackl = "Good Job! Keep practicing to improve.";
+    feedback = "Good Job! Keep practicing to improve.";
   } else {
-    feedbackl = "Needs Improvement. Try again!";
+    feedback = "Needs Improvement. Try again!";
   }
 
-  
+
   // Display the feedback based on score
-  document.getElementById("feedback").innerText = feedbackl;
+  document.getElementById("feedback").innerText = feedback;
 
   // Populate comparison between answers and correct answers
   const resultsElement = document.getElementById("comparison");
-  // resultsElement.innerHTML = "<h3>Your Choices Compared to Correct Answers:</h3>";
+  resultsElement.innerHTML = "";
 
   results.forEach((result, index) => {
     const resultItem = document.createElement("div");
     resultItem.classList.add("result-item");
+
+    // Create a string with the question, user's answer, and the correct answer
     resultItem.innerHTML = `
       <p><strong>Question ${index + 1}:</strong> ${result.question}</p>
-      <p>Your Choice: <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedChoice}</span></p>
-      <p>Correct Answer: ${result.correctAnswer}</p>
+      <p>Your Answer: 
+        <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedChoice}</span>
+      </p>
+      <p>Correct Answer: <span style="color: green">${result.correctAnswer}</span></p>
     `;
     resultsElement.appendChild(resultItem);
   });
+
 }
 
 

@@ -2,9 +2,7 @@
  .hidden {
    display: none;
  }
- #result {
-  display: none;
- }
+
 
  li {
   text-align: left;
@@ -237,12 +235,16 @@
  .result-item {
    padding: 10px;
    border-bottom: 1px solid var(--primary-blue);
+
  }
 
  .result-item p {
    margin: 5px 0;
  }
 
+ .result-item span {
+  font-weight: bold;
+}
 
  /* Timer Styling - Circular Timer */
  #timer {
