@@ -11,61 +11,18 @@ coll.addEventListener("click", function () {
   }
 });
 
-const questions = [{
-    question: "What is the capital of Rwanda?",
-    answers: ["Kigali", "Nairobi", "Dar es Salaam", "Kampala"],
-    correct: 0
-  },
-  {
-    question: "Which language is widely spoken in Rwanda?",
-    answers: ["Swahili", "Kinyarwanda", "Amharic", "Zulu"],
-    correct: 1
-  },
-  {
-    question: "When did Rwanda gain independence?",
-    answers: ["1962", "1975", "1980", "1990"],
-    correct: 0
-  },
-  {
-    question: "What is Rwanda known as?",
-    answers: ["Land of Lakes", "Land of a Thousand Hills", "Land of Rivers", "Land of Gold"],
-    correct: 1
-  },
-  {
-    question: "What is the currency of Rwanda?",
-    answers: ["Shilling", "Rwandan Franc", "Dollar", "Pound"],
-    correct: 1
-  },
-  {
-    question: "What is Rwanda's primary economic activity?",
-    answers: ["Mining", "Agriculture", "Manufacturing", "Tourism"],
-    correct: 1
-  },
-  {
-    question: "Which famous mountain gorillas can be found in Rwanda?",
-    answers: ["Silverback gorillas", "Western gorillas", "Golden gorillas", "Bamboo gorillas"],
-    correct: 0
-  },
-  {
-    question: "What is the official name of Rwanda?",
-    answers: ["Kingdom of Rwanda", "People's Republic of Rwanda", "Republic of Rwanda", "United States of Rwanda"],
-    correct: 2
-  },
-  {
-    question: "Which national park is famous for gorilla trekking?",
-    answers: ["Volcanoes National Park", "Serengeti National Park", "Kruger National Park", "Amboseli National Park"],
-    correct: 0
-  },
-  {
-    question: "What color is NOT in the Rwandan flag?",
-    answers: ["Blue", "Red", "Yellow", "Green"],
-    correct: 1
-  },
-  {
-    question: "Who is the current president of Rwanda?",
-    answers: ["Paul Kagame", "Pasteur Bizimungu", "Louise Mushikiwabo", "Juvenal Habyarimana", "Grégoire Kayibanda", "Dominique Mbonyumutwa", "Théodore Sindikubwabo"],
-    correct: 0
-  }
+const questions = [
+  { question: "What is the capital of Rwanda?", answers: ["Kigali", "Nairobi", "Dar es Salaam", "Kampala"], correct: 0 },
+  { question: "Which language is widely spoken in Rwanda?", answers: ["Swahili", "Kinyarwanda", "Amharic", "Zulu"], correct: 1 },
+  { question: "When did Rwanda gain independence?", answers: ["1962", "1975", "1980", "1990"], correct: 0 },
+  { question: "What is Rwanda known as?", answers: ["Land of Lakes", "Land of a Thousand Hills", "Land of Rivers", "Land of Gold"], correct: 1 },
+  { question: "What is the currency of Rwanda?", answers: ["Shilling", "Rwandan Franc", "Dollar", "Pound"], correct: 1 },
+  { question: "What is Rwanda's primary economic activity?", answers: ["Mining", "Agriculture", "Manufacturing", "Tourism"], correct: 1 },
+  { question: "Which famous mountain gorillas can be found in Rwanda?", answers: ["Silverback gorillas", "Western gorillas", "Golden gorillas", "Bamboo gorillas"], correct: 0 },
+  { question: "What is the official name of Rwanda?", answers: ["Kingdom of Rwanda", "People's Republic of Rwanda", "Republic of Rwanda", "United States of Rwanda"], correct: 2 },
+  { question: "Which national park is famous for gorilla trekking?", answers: ["Volcanoes National Park", "Serengeti National Park", "Kruger National Park", "Amboseli National Park"], correct: 0 },
+  { question: "What color is NOT in the Rwandan flag?", answers: ["Blue", "Red", "Yellow", "Green"], correct: 1 },
+  { question: "Who is the current president of Rwanda?", answers: ["Paul Kagame", "Pasteur Bizimungu", "Louise Mushikiwabo", "Juvenal Habyarimana", "Grégoire Kayibanda", "Dominique Mbonyumutwa", "Théodore Sindikubwabo"], correct: 0 }
 ];
 
 let shuffledQuestions;
@@ -75,16 +32,15 @@ let streak = 0;
 let hintUsed = false;
 let username = "";
 let results = [];
-let selectedChoiceRecorded = false; // Track if  choice has been recorded
-let timer; // Timer variable
-
+let timer;
+let selectedChoiceRecorded = false;
 
 function shuffleQuestions() {
   return questions
     .map(question => ({
       ...question,
       sort: Math.random()
- }))
+    }))
     .sort((a, b) => a.sort - b.sort)
     .map(question => {
       delete question.sort;
@@ -105,16 +61,14 @@ function startQuiz() {
   loadQuestion();
 }
 
-
 function loadQuestion() {
-  //selectedChoice = false; // Reset for each new question
-  hintUsed = false; //to rest hint for every question
-  document.getElementById("timer").innerText = "15"; // Reset timer display
+  hintUsed = false; // Reset hint usage for each question
+  document.getElementById("timer").innerText = "20"; // Reset timer display
   document.getElementById("hint").disabled = hintUsed;
   document.getElementById("hint").classList.remove("hidden");
   document.getElementById("next").classList.add("hidden");
-  document.getElementById("next").disabled = true;
-
+  document.getElementById("next").disabled = true; // Disable the next button initially
+  
   const questionElement = document.getElementById("question");
   const answersElement = document.getElementById("answers");
   const questionNumberElement = document.getElementById("question-number");
@@ -124,14 +78,6 @@ function loadQuestion() {
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
   questionElement.innerText = currentQuestion.question;
   answersElement.innerHTML = "";
-
-  // Create answer buttons
-  // currentQuestion.answers.forEach((answer, index) => {
-  //   const button = document.createElement("button");
-  //   button.innerText = answer;
-  //   button.onclick = () => selectAnswer(index);
-  //   answersElement.appendChild(button);
-  // });
 
   // Create radio buttons for answers
   currentQuestion.answers.forEach((answer, index) => {
@@ -153,34 +99,27 @@ function loadQuestion() {
 }
 
 function startTimer() {
-  let timeLeft = 15; // Set timer for 15 seconds
-  document.getElementById("timer").innerText = timeLeft; // Display initial time
+  let timeLeft = 20;
+  document.getElementById("timer").innerText = timeLeft;
 
-  // Clear any existing timer before starting a new one
   clearInterval(timer);
   timer = setInterval(() => {
     timeLeft--;
-    document.getElementById("timer").innerText = timeLeft; // Update timer display
+    document.getElementById("timer").innerText = timeLeft;
 
     if (timeLeft <= 0) {
       clearInterval(timer);
       alert("Time's up! Moving to the next question.");
       nextQuestion(); // Automatically go to next question when time's up
     }
-  }, 1000); // Update every second
+  }, 1000);
 }
 
-
 function selectAnswer(index) {
-if (selectedChoiceRecorded) return;
+  if (selectedChoiceRecorded) return; // Prevent multiple selections
 
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
   const isCorrect = index === currentQuestion.correct;
-  
-  // document.getElementById("next").disabled = false;
-  // Record the first answer selection only if it hasn’t been recorded yet
-  //  if (!selectedChoiceRecorded) {
-  //     ChoiceRecorded = true;
 
   results.push({
     question: currentQuestion.question,
@@ -193,31 +132,36 @@ if (selectedChoiceRecorded) return;
     score++;
   }
 
-
-  // Provide feedback for each answer attempt
-  // showFeedback(index === currentQuestion.correct);
-
+  // Provide feedback for the selected answer
   showFeedback(isCorrect);
 
   selectedChoiceRecorded = true; // Mark the choice as recorded
   clearInterval(timer); // Stop the timer when an answer is selected
 
-   // Enable next button after answering
-  document.getElementById("next").disabled = false; // Show Next button
+  // Enable next button after answering
+  document.getElementById("next").disabled = false;
   document.getElementById("next").classList.remove("hidden");
-  // document.getElementById("hint").classList.add("hidden");
+  document.getElementById("hint").classList.add("hidden"); // Hide hint after answer
 }
 
+function showFeedback(isCorrect) {
+  const feedbackElement = document.getElementById("feedback");
+  const scoreElement = document.getElementById("score-display");
+
+  feedbackElement.innerText = isCorrect ? `Correct! Great job, ${username}!` : "Incorrect. Try again or move to the next question!";
+  feedbackElement.style.color = isCorrect ? "green" : "red";
+
+  scoreElement.innerText = `Your Score: ${score}`;
+}
 
 function nextQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex < shuffledQuestions.length) {
     document.getElementById("feedback").innerText = ""; // Clear feedback
+    document.getElementById("next").classList.add("hidden"); // Hide next button again
+    document.getElementById("hint").classList.remove("hidden"); // Show hint for the next question
+    document.getElementById("next").disabled = true; // Disable next button
     loadQuestion();
-    document.getElementById("next").classList.add("hidden"); // show Next button
-    // document.getElementById("hint").classList.remove("hidden");
-    // document.getElementById("next").disabled = false;
-    // loadQuestion();
   } else {
     showResults();
   }
@@ -226,7 +170,6 @@ function nextQuestion() {
 function checkAnswer() {
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
   const selectedRadio = document.querySelector("input[name='answer']:checked");
-  document.getElementById("next").classList.remove("hidden");
 
   if (!selectedRadio) {
     alert("Please select an answer before checking.");
@@ -238,33 +181,17 @@ function checkAnswer() {
 
   showFeedback(isCorrect);
 
-  // Lock the questions 
+  // Lock the question once an answer is selected
   document.querySelectorAll("input[name='answer']").forEach(radio => {
     radio.disabled = true;
   });
-
-  // Prompt the user to click the next question button 
-  document.getElementById("feedback").innerText += " Please click the 'Next Question' button to continue.";
 }
-
-
-function showFeedback(isCorrect) {
-  const feedbackElement = document.getElementById("feedback");
-  if (isCorrect) {
-    feedbackElement.innerText = `Correct! Great job, ${username}!`;
-    feedbackElement.style.color = "green";
-  } else {
-    feedbackElement.innerText = "Incorrect. Try again to see the right question or move to the next question!";
-    feedbackElement.style.color = "red";
-  }
-}
-
 
 function useHint() {
   if (!hintUsed) {
     hintUsed = true;
     alert(`Hint: The correct answer starts with "${shuffledQuestions[currentQuestionIndex].answers[shuffledQuestions[currentQuestionIndex].correct][0]}"`);
-    document.getElementById("hint").disabled = true; // Disable hint button after use
+    document.getElementById("hint").disabled = true;
   }
 }
 
@@ -286,7 +213,7 @@ function showResults() {
   }
 
   const resultsElement = document.getElementById("comparison");
-  resultsElement.innerHTML = "<h3>Your Choices Compared to Correct Answers:</h3>";
+  resultsElement.innerHTML = `<h3>Your Choices Compared to Correct Answers:</h3><p>${feedback}</p>`;
 
   results.forEach((result, index) => {
     const resultItem = document.createElement("div");
@@ -301,17 +228,14 @@ function showResults() {
 }
 
 function restartQuiz() {
-  //location.reload();
   currentQuestionIndex = 0;
   score = 0;
   streak = 0;
   hintUsed = false;
   results = [];
-  shuffledQuestions = shuffleQuestions(); //Reload questions
+  shuffledQuestions = shuffleQuestions();
   document.getElementById("result").classList.add("hidden");
   document.getElementById("feedback").innerText = "";
-  document.getElementById("login").classList.add("hidden");
-  document.getElementById("quiz").classList.remove("hidden");
-  loadQuestion();
-
+  document.getElementById("login").classList.remove("hidden");
+  document.getElementById("quiz").classList.add("hidden");
 }
