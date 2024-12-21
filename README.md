@@ -161,6 +161,7 @@ In future implementations I would like to:
 2. Add some historical information on some questions that could be displayed to the user if the user want it so.
 3. Create a back end database to enable me to store scores which would then allow you to see how you scored in previous quizes.
 4. Look further into the accessibility for people with colour blindness, perhaps by adding symbols such as a tick or cross next to the answer when they are checked.
+5. Final results will be improved
 
 ### Accessibility
 
@@ -265,6 +266,7 @@ To clone the repository:
 
 * Usename input box to be adjusted and make it bigger as the start quiz button.
 * on mobile devices, the login input box seems attached to the start quiz button and that doesn't look nice.
+* Final results comparison to correct answers needs improvement
 
 ![Future bug fix](./assets/images/testing/futurebugtobefixed.png)
 
