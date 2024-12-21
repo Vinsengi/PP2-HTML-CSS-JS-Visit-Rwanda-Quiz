@@ -21,8 +21,10 @@
                 <li>Your score will be displayed at the end.</li>
             </ul>
 
-            <p>Only the FIRST CHOICE COUNTS for the final results!</p>
+            <!-- <p>Only the FIRST CHOICE COUNTS for the final results!</p> -->
         </div>
+
+
         <div id="login">
             <h2>Welcome to the Visit Rwanda Quiz!</h2>
             <label for="username">Enter your name</label>
@@ -35,7 +37,7 @@
         </div>
 
         <div id="quiz" class="hidden">
-            <h3 style="color: red;">NB:FIRST CHOICE COUNTS for final results!</h3>
+            <!-- <h3 style="color: red;">NB:FIRST CHOICE COUNTS for final results!</h3> -->
             <h3>Question <span id="question-number">1</span>/11</h3>
             <div id="progress-bar">
                 <div id="progress"></div>
@@ -59,7 +61,8 @@
         <div id="result" class="hidden">
             <h2>Quiz Complete!</h2>
             <div id="score"></div>
-            <div id="comparison"></div>
+            <div id="feedback"></div>
+            <div id="comparison"></div> <!-- This will show the choices compared to correct answers -->
             <br>
             <br>
             <button onclick="restartQuiz()">Restart Quiz</button>
@@ -71,7 +74,7 @@
 
 
     <script src="./assets/js/script.js"></script>
-     <!-- <script src="./assets/js/nn.js"></script> -->
+    <!-- <script src="./assets/js/nn.js"></script> -->
 </body>
 
 </html>

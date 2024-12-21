@@ -77,15 +77,16 @@ let username = "";
 let results = [];
 let selectedChoiceRecorded = false; // Track if  choice has been recorded
 let timer; // Timer variable
+let selectedChoiceIndex = -1; // Variable to track the last selected choice
 
 
 function shuffleQuestions() {
   return questions
     .map(question => ({
       ...question,
-      sort: Math.random()
- }))
-    .sort((a, b) => a.sort - b.sort)
+      sort: Math.random() // Randomly assigns a number to each question
+    }))
+    .sort((a, b) => a.sort - b.sort) // Sort questions based on the random number
     .map(question => {
       delete question.sort;
       return question;
@@ -99,21 +100,30 @@ function startQuiz() {
     return;
   }
   username = nameInput;
-  shuffledQuestions = shuffleQuestions();
+  shuffledQuestions = shuffleQuestions(); // Shuffle questions before starting the quiz
+
+  // Hide login screen and show quiz
   document.getElementById("login").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
+
+  // Load the first question
   loadQuestion();
 }
 
 
 function loadQuestion() {
   //selectedChoice = false; // Reset for each new question
-  hintUsed = false; //to rest hint for every question
+
+  // Reset answer selection and feedback
+  document.querySelectorAll("input[name='answer']").forEach(radio => {
+    radio.disabled = false; // Enable radio buttons
+    radio.checked = false; // Reset checked state
+  });
+
+  // Reset feedback and timer for each new question
+  document.getElementById("feedback").innerText = "";
   document.getElementById("timer").innerText = "15"; // Reset timer display
-  document.getElementById("hint").disabled = hintUsed;
-  document.getElementById("hint").classList.remove("hidden");
-  document.getElementById("next").classList.add("hidden");
-  document.getElementById("next").disabled = true;
+  selectedChoiceRecorded = false; // Reset choice tracking for the new questio
 
   const questionElement = document.getElementById("question");
   const answersElement = document.getElementById("answers");
@@ -140,6 +150,13 @@ function loadQuestion() {
     input.type = "radio";
     input.name = "answer";
     input.value = index;
+
+    // Listen for change events to track the last selection
+    input.onchange = function () {
+      selectedChoiceIndex = index; // Track the last selected answer
+      enableNextButton(); // Enable the "Next" button when an answer is selected
+    };
+
     label.appendChild(input);
     label.appendChild(document.createTextNode(answer));
     answersElement.appendChild(label);
@@ -150,6 +167,21 @@ function loadQuestion() {
 
   startTimer(); // Start the timer for this question
   selectedChoiceRecorded = false; // Reset choice tracking
+  // hintUsed = false; //to rest hint for every question
+  // document.getElementById("timer").innerText = "15"; // Reset timer display
+  // document.getElementById("hint").disabled = hintUsed;
+  // document.getElementById("hint").classList.remove("hidden");
+  document.getElementById("next").classList.add("hidden"); // Hide "Next" button initially
+  document.getElementById("next").disabled = true; // Disable "Next" button initially
+}
+
+
+// Function to enable the "Next" button once an answer is selected
+function enableNextButton() {
+  if (selectedChoiceIndex !== -1) { // If an answer is selected
+    document.getElementById("next").disabled = false; // Enable "Next"
+    document.getElementById("next").classList.remove("hidden"); // Show "Next" button
+  }
 }
 
 function startTimer() {
@@ -172,11 +204,12 @@ function startTimer() {
 
 
 function selectAnswer(index) {
-if (selectedChoiceRecorded) return;
+  if (selectedChoiceRecorded) return;
 
+  // Ensure only the last selected answer is recorded
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
   const isCorrect = index === currentQuestion.correct;
-  
+
   // document.getElementById("next").disabled = false;
   // Record the first answer selection only if it hasn’t been recorded yet
   //  if (!selectedChoiceRecorded) {
@@ -198,13 +231,18 @@ if (selectedChoiceRecorded) return;
   // showFeedback(index === currentQuestion.correct);
 
   showFeedback(isCorrect);
-
   selectedChoiceRecorded = true; // Mark the choice as recorded
   clearInterval(timer); // Stop the timer when an answer is selected
 
-   // Enable next button after answering
-  document.getElementById("next").disabled = false; // Show Next button
-  document.getElementById("next").classList.remove("hidden");
+  // Disable radio buttons after selection
+  document.querySelectorAll("input[name='answer']").forEach(radio => {
+    radio.disabled = true;
+  });
+
+  enableNextButton(); // Ensure "Next" button is enabled after answering
+  // Enable next button after answering
+  // document.getElementById("next").classList.remove("hidden");
+  // document.getElementById("next").disabled = false; // enable next button
   // document.getElementById("hint").classList.add("hidden");
 }
 
@@ -212,12 +250,12 @@ if (selectedChoiceRecorded) return;
 function nextQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex < shuffledQuestions.length) {
-    document.getElementById("feedback").innerText = ""; // Clear feedback
     loadQuestion();
-    document.getElementById("next").classList.add("hidden"); // show Next button
-    // document.getElementById("hint").classList.remove("hidden");
-    // document.getElementById("next").disabled = false;
-    // loadQuestion();
+    document.getElementById("next").classList.add("hidden"); // Hide Next button initially
+      // document.getElementById("feedback").innerText = ""; // Clear feedback
+      // document.getElementById("hint").classList.remove("hidden");
+      // document.getElementById("next").disabled = false;
+      // loadQuestion();
   } else {
     showResults();
   }
@@ -226,13 +264,14 @@ function nextQuestion() {
 function checkAnswer() {
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
   const selectedRadio = document.querySelector("input[name='answer']:checked");
-  document.getElementById("next").classList.remove("hidden");
+
 
   if (!selectedRadio) {
     alert("Please select an answer before checking.");
     return;
   }
 
+  // Record the selected answer only if the user clicks "Check Answer"
   const selectedIndex = parseInt(selectedRadio.value);
   const isCorrect = selectedIndex === currentQuestion.correct;
 
@@ -244,6 +283,7 @@ function checkAnswer() {
   });
 
   // Prompt the user to click the next question button 
+  document.getElementById("next").classList.remove("hidden");
   document.getElementById("feedback").innerText += " Please click the 'Next Question' button to continue.";
 }
 
@@ -271,6 +311,8 @@ function useHint() {
 function showResults() {
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
+
+  // Display score
   document.getElementById("score").innerText = `${username}, you scored ${score} out of ${shuffledQuestions.length}!`;
 
   // Calculate the percentage score
@@ -285,6 +327,10 @@ function showResults() {
     feedback = "Needs Improvement. Try again!";
   }
 
+  // Display the feedback based on score
+  document.getElementById("feedback").innerText = feedback;
+
+  // Populate comparison between answers and correct answers
   const resultsElement = document.getElementById("comparison");
   resultsElement.innerHTML = "<h3>Your Choices Compared to Correct Answers:</h3>";
 
