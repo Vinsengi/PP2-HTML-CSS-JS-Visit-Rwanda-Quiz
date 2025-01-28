@@ -293,15 +293,6 @@ function showFeedback(isCorrect) {
 }
 
 
-// function useHint() {
-//   if (!hintUsed) {
-//     hintUsed = true;
-//     alert(`Hint: The correct answer starts with "${shuffledQuestions[currentQuestionIndex].answers[shuffledQuestions[currentQuestionIndex].correct][0]}"`);
-//     document.getElementById("hint").disabled = true; // Disable hint button after use
-//   }
-// }
-
-
 // Function to use the hint
 function useHint() {
   if (!hintUsedForCurrentQuestion) {
@@ -316,6 +307,9 @@ function useHint() {
 
 
 function showResults() {
+// stop the timer
+clearInterval(timer);
+
 
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");

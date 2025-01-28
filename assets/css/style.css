@@ -28,7 +28,7 @@
  }
 
  .content {
-   padding: 0 18px;
+   padding: 28px;
    display: none;
    overflow: hidden;
    background-color: #f9f9f9;
@@ -46,13 +46,13 @@
  #ka,
  #result {
    width: 100%;
-   max-width: 500px;
+   /* max-width: 800px; */
    padding: 20px;
    background-color: rgba(255, 255, 255, 0.9);
    /*Semi-transparent background */
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+   /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
    border-radius: 8px;
-   margin: 20px;
+   margin: 10px;
    box-sizing: border-box;
  }
 
@@ -116,7 +116,7 @@
    #login,
    #quiz,
    #result {
-     padding: 10px;
+     padding: 20px;
    }
 
    button,
@@ -150,7 +150,7 @@
    justify-content: center;
    align-items: center;
    min-height: 100vh;
-   margin: 0;
+   margin: 10;
    padding: 10px;
    background-image: url('../images/rwandaFlag.png');
    background-color: var(--primary-blue);
