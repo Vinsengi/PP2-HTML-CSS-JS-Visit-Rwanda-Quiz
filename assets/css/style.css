@@ -267,17 +267,17 @@ button:hover {
 
 
  /* Quiz Container */
- #quiz-container {
+ /* #quiz-container {
    /* background-color: var(--background-gray); */
    /* padding: 20px; */
    /* border-radius: 8px;
    max-width: 600px;
    width: 90%;
    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
- }
+ /* } */ 
 
  /* Button Styling */
- button {
+ /* button { */
    /* background-color: var(--primary-blue); */
    /* color: white;
    border: none;
@@ -285,4 +285,4 @@ button:hover {
    border-radius: 4px;
    cursor: pointer; */
    /* transition: background-color 0.3s; */
- }
+ /* } */
