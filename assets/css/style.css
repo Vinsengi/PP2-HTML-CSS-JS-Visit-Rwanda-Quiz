@@ -233,7 +233,7 @@
  }
 
  .result-item {
-   padding: 10px;
+   padding: 20px;
    border-bottom: 1px solid var(--primary-blue);
 
  }
@@ -262,4 +262,9 @@
    /* Adjust font size for readability */
    margin: 10px auto;
    /* Center the timer horizontally */
+ }
+
+ #username {
+  padding: 8px;
+  width: 180px;
  }
