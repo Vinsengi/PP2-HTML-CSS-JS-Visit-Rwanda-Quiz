@@ -1,80 +1,256 @@
- /* Hide elements initially */
- .hidden {
-   display: none;
+/* General Body Styling */
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0px;
+  background-image: url('../images/rwandaFlag.png');
+  background-color: var(--primary-blue);
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  box-sizing: border-box;
+  overflow-x: hidden; /* prevent horizontal overflow */
+} 
+ 
+
+.container {
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  /* background-color: rgba(255, 255, 255, 0.9); */
+  background-color: var(--background-gray);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+
+/* Button styles */
+button {
+  /* background-color: #4caf50; */
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 200px;
+  margin: 10px auto;
+}
+
+
+button:hover {
+   background-color: var(--primary-green);
  }
+
+
+ .collapsible {
+  background-color: #f1f1f1;
+  color: #444;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  font-size: 15px;
+}
+
+.active,
+.collapsible:hover {
+  background-color: #ccc;
+}
+
+
+
+.content {
+  padding: 28px;
+  display: none;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
+
+
+ /* Timer Styling - Circular Timer */
+ #timer {
+  background-color: var(--timer-light-blue);
+  color: var(--text-dark);
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;  /* Makes it circular */
+  font-size: 1.2em;   /* Adjust font size for readability */
+  margin: 10px auto;  /* Center the timer horizontally */
+}
+
+
+/* Quiz container styles */
+#login, #quiz, #result {
+  padding: 20px;
+  background-color:rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;  /* Prevent it from stretching too wide */
+  margin: 10px auto; /*center content horizontally */
+  box-sizing: border-box;
+}
+
+
+/* Feedback Styling */
+#feedback {
+  font-weight: bold;
+}
+
+#feedback.correct {
+  color: var(--success-green);
+}
+
+#feedback.incorrect {
+  color: var(--error-red);
+}
+
+
+
+/* Progress Bar */
+#progress {
+  background-color: var(--primary-green);
+  height: 10px;
+  width: 0%;
+  border-radius: 3px;
+}
+
+/* Progress bar styling */
+#progress-bar {
+  width: 100%;
+  background-color: #ddd;
+  height: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+
+
+/* Result Section */
+#result {
+  background-color: var(--background-gray);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Result Text
+#result h3 {
+  color: var(--primary-blue);
+} */
+
+.result-item {
+  padding: 20px;
+  border-bottom: 1px solid var(--primary-blue);
+
+}
+
+.result-item p {
+  margin: 5px 0;
+}
+
+.result-item span {
+ font-weight: bold;
+}
+
+
+
+ /* Responsive styles */
+ @media (max-width: 600px) {
+  body {
+    padding: 5px;
+  }
+
+  #login,
+  #quiz,
+  #result {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  #progress-bar {
+    height: 8px;
+  }
+
+  button,
+  #answers button {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}
+
+
+
+@media (max-width: 400px) {
+
+  #login,
+  #quiz,
+  #result {
+    padding: 20px;
+  }
+
+  button,
+  #answers button {
+    font-size: 0.85rem;
+    padding: 7px 10px;
+  }
+}
+
+
+#username {
+  padding: 8px;
+  width: 180px;
+ } 
+
 
 
  li {
   text-align: left;
- }
+  margin-left: 30px;
+}
 
 
-
- */ .collapsible {
-   background-color: #f1f1f1;
-   color: #444;
-   cursor: pointer;
-   padding: 10px;
-   width: 100%;
-   border: none;
-   text-align: left;
-   outline: none;
-   font-size: 15px;
- }
-
- .active,
- .collapsible:hover {
-   background-color: #ccc;
- }
-
- .content {
-   padding: 28px;
-   display: none;
-   overflow: hidden;
-   background-color: #f9f9f9;
- }
-
- .container {
-   max-width: 600px;
-   margin: 0 auto;
-   padding: 20px;
- }
-
- /* Quiz container styles */
- #login,
- #quiz,
- #ka,
- #result {
-   width: 100%;
-   /* max-width: 800px; */
-   padding: 20px;
-   background-color: rgba(255, 255, 255, 0.9);
-   /*Semi-transparent background */
-   /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
-   border-radius: 8px;
-   margin: 10px;
-   box-sizing: border-box;
- }
-
- /* Button styles */
- button {
-   background-color: #4caf50;
-   color: white;
-   padding: 10px 20px;
-   border: none;
-   border-radius: 5px;
-   cursor: pointer;
-   font-size: 1rem;
-   width: 100%;
-   max-width: 200px;
- }
+ /* Hide elements initially */
+ .hidden {
+  display: none;
+}
 
 
+/* aditional codes */
 
- #answers button {
+ /* Root Variables */
+ :root {
+  --primary-blue: #1D70B8;
+  --primary-green: green;
+  --accent-yellow: #FAD201;
+  --success-green: #20603D;
+  --error-red: #D62828;
+  --text-dark: #333333;
+  --background-gray: #F4F4F4;
+  --hover-blue: #144a7a;
+  --timer-light-blue: #d9edf7;
+}
+
+ /* #answers button {
    display: block;
    width: 100%;
-   margin: 5px 0;
+   margin: 10px auto;
    padding: 10px;
    background-color: grey;
    border: 1px solid #ccc;
@@ -82,189 +258,31 @@
    cursor: pointer;
    font-size: 1rem;
    transition: background-color 0.2s ease;
- }
+ } */
 
- #answers button:hover {
+ /* #answers button:hover {
    background-color: green;
- }
-
- /* Responsive styles */
- @media (max-width: 600px) {
-   body {
-     padding: 5px;
-   }
-
-   #login,
-   #quiz,
-   #result {
-     padding: 15px;
-   }
-
-   #progress-bar {
-     height: 8px;
-   }
-
-   button,
-   #answers button {
-     font-size: 0.9rem;
-     padding: 8px 15px;
-   }
- }
-
- @media (max-width: 400px) {
-
-   #login,
-   #quiz,
-   #result {
-     padding: 20px;
-   }
-
-   button,
-   #answers button {
-     font-size: 0.85rem;
-     padding: 7px 10px;
-   }
- }
+ } */
 
 
- /* aditional codes */
-
- /* Root Variables */
- :root {
-   --primary-blue: #1D70B8;
-   --primary-green: green;
-   --accent-yellow: #FAD201;
-   --success-green: #20603D;
-   --error-red: #D62828;
-   --text-dark: #333333;
-   --background-gray: #F4F4F4;
-   --hover-blue: #144a7a;
-   --timer-light-blue: #d9edf7;
- }
-
- /* General Body Styling */
-
- body {
-   font-family: Arial, sans-serif;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   min-height: 100vh;
-   margin: 10;
-   padding: 10px;
-   background-image: url('../images/rwandaFlag.png');
-   background-color: var(--primary-blue);
-   background-size: cover;
-   background-position: center;
-   text-align: center;
-   box-sizing: border-box;
- }
 
  /* Quiz Container */
  #quiz-container {
-   background-color: var(--background-gray);
-   padding: 20px;
-   border-radius: 8px;
+   /* background-color: var(--background-gray); */
+   /* padding: 20px; */
+   /* border-radius: 8px;
    max-width: 600px;
    width: 90%;
-   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
  }
 
  /* Button Styling */
  button {
-   background-color: var(--primary-blue);
-   color: white;
+   /* background-color: var(--primary-blue); */
+   /* color: white;
    border: none;
    padding: 10px 15px;
    border-radius: 4px;
-   cursor: pointer;
-   transition: background-color 0.3s;
- }
-
- button:hover {
-   background-color: var(--primary-green);
- }
-
-
-
- /* Progress Bar */
- #progress {
-   background-color: var(--primary-green);
-   height: 10px;
-   width: 0%;
-   border-radius: 3px;
- }
-
- /* Progress bar styling */
- #progress-bar {
-   width: 100%;
-   background-color: #ddd;
-   height: 10px;
-   border-radius: 5px;
-   margin-bottom: 20px;
-   overflow: hidden;
- }
-
-
- /* Feedback Styling */
- #feedback {
-   font-weight: bold;
- }
-
- #feedback.correct {
-   color: var(--success-green);
- }
-
- #feedback.incorrect {
-   color: var(--error-red);
- }
-
- /* Result Section */
- #result {
-   background-color: var(--background-gray);
-   padding: 20px;
-   border-radius: 8px;
-   margin-top: 20px;
- }
-
- /* Result Text */
- #result h3 {
-   color: var(--primary-blue);
- }
-
- .result-item {
-   padding: 20px;
-   border-bottom: 1px solid var(--primary-blue);
-
- }
-
- .result-item p {
-   margin: 5px 0;
- }
-
- .result-item span {
-  font-weight: bold;
-}
-
- /* Timer Styling - Circular Timer */
- #timer {
-   background-color: var(--timer-light-blue);
-   color: var(--text-dark);
-   font-weight: bold;
-   width: 50px;
-   height: 50px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   border-radius: 50%;
-   /* Makes it circular */
-   font-size: 1.2em;
-   /* Adjust font size for readability */
-   margin: 10px auto;
-   /* Center the timer horizontally */
- }
-
- #username {
-  padding: 8px;
-  width: 180px;
+   cursor: pointer; */
+   /* transition: background-color 0.3s; */
  }
