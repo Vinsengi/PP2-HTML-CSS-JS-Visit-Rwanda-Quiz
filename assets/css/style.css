@@ -157,6 +157,7 @@ button:hover {
 
 .result-item {
   padding: 20px;
+  margin-bottom: 15px;
   border-bottom: 1px solid var(--primary-blue);
 
 }
@@ -169,7 +170,12 @@ button:hover {
  font-weight: bold;
 }
 
-
+#comparison {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-top: 20px;
+}
 
  /* Responsive styles */
  @media (max-width: 600px) {

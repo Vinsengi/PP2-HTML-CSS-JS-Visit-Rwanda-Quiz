@@ -110,7 +110,7 @@ function startQuiz() {
   loadQuestion();
 }
 
-let hintUsedForCurrentQuestion = false;  // Track hint usage for each question
+let hintUsedForCurrentQuestion = false; // Track hint usage for each question
 
 function loadQuestion() {
   // Reset previous states for each new question
@@ -151,6 +151,7 @@ function loadQuestion() {
     input.onchange = function () {
       selectedChoiceIndex = index; // Track the last selected answer
       enableNextButton(); // Enable the "Next" button when an answer is selected
+      selectAnswer(index); // Call selectAnswer to record the answer
     };
 
     label.appendChild(input);
@@ -167,15 +168,12 @@ function loadQuestion() {
   document.getElementById("next").classList.add("hidden"); // Hide "Next" button initially
   document.getElementById("next").disabled = true; // Disable "Next" button initially
 
-   // Enable the hint button for each question
-   document.getElementById("hint").disabled = false; // Re-enable hint button
-   document.getElementById("hint").classList.remove("hidden"); // Show hint button
+  // Enable the hint button for each question
+  document.getElementById("hint").disabled = false; // Re-enable hint button
+  document.getElementById("hint").classList.remove("hidden"); // Show hint button
 
   selectedChoiceRecorded = false; // Reset choice tracking
-  //hintUsed = false; //to rest hint for every question
-  // document.getElementById("timer").innerText = "15"; // Reset timer display
-  // document.getElementById("hint").disabled = hintUsed;
-    
+
 }
 
 
@@ -214,16 +212,24 @@ function selectAnswer(index) {
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
   const isCorrect = index === currentQuestion.correct;
 
+  // log if isCorrect is calculated as expected
+
+  console.log(`User selected: ${currentQuestion.answers[index]} (index: ${index})`);
+  console.log(`Correct answer: ${currentQuestion.answers[currentQuestion.correct]}`);
+
+
   results.push({
     question: currentQuestion.question,
     selectedChoice: currentQuestion.answers[index],
     correctAnswer: currentQuestion.answers[currentQuestion.correct],
-    isCorrect
+    isCorrect: isCorrect
   });
 
   if (isCorrect) {
     score++;
   }
+
+  console.log(`Current score: ${score}`);
 
   showFeedback(isCorrect);
   selectedChoiceRecorded = true; // Mark the choice as recorded
@@ -236,7 +242,10 @@ function selectAnswer(index) {
 
   enableNextButton(); // Ensure "Next" button is enabled after answering
 
+
+  updateScoreDisplay(); // Update score display on the UI 
 }
+
 
 
 function nextQuestion() {
@@ -250,7 +259,9 @@ function nextQuestion() {
   // Reset selection state
   selectedChoiceIndex = -1;
   selectedChoiceRecorded = false;
-  
+
+  // Update the score display again after moving to the next question
+  updateScoreDisplay();
 }
 
 
@@ -298,31 +309,45 @@ function useHint() {
   if (!hintUsedForCurrentQuestion) {
     hintUsedForCurrentQuestion = true; // Mark hint as used for the current question
     const currentQuestion = shuffledQuestions[currentQuestionIndex];
-    const hint = currentQuestion.answers[currentQuestion.correct][0];  // Hint based on the first letter of the correct answer
+    const hint = currentQuestion.answers[currentQuestion.correct][0]; // Hint based on the first letter of the correct answer
     alert(`Hint: The correct answer starts with "${hint}"`);
 
     document.getElementById("hint").disabled = true; // Disable the hint button after it's used
   }
 }
 
+// Update the score display function
+function updateScoreDisplay() {
+  const scoreElement = document.getElementById("score"); // Assuming you have an element with id="score"
+  scoreElement.innerText = `${username},  you have answered all ${shuffledQuestions.length} questions! 
+  Your final score is: ${score}`;
+}
+
 
 function showResults() {
-// stop the timer
-clearInterval(timer);
+  // stop the timer
+  clearInterval(timer);
+
+  console.log("Final results:", results); // Debugging log to check the content of results array
 
 
-  document.getElementById("quiz").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
+  document.getElementById("comparison").classList.remove("hidden");
+  document.getElementById("quiz").classList.add("hidden");
   document.getElementById("hint").classList.add("hidden");
   document.getElementById("timer").classList.add("hidden");
-  document.getElementById("timer").disabled = true;
+
+
+  // Update the score display
+  updateScoreDisplay();
 
 
   // Display score
-  document.getElementById("score").innerText = `${username}, all ${shuffledQuestions.length} questions answered!`;
+  // document.getElementById("score").innerText = `${username},  you have answered all ${shuffledQuestions.length} questions! Your final score is: ${score}`;
 
   // Calculate the percentage score
   const percentage = (score / shuffledQuestions.length) * 100;
+  // const feedbackElement = document.getElementById("feedback");
 
   let feedback = "";
   if (percentage >= 80) {
@@ -333,12 +358,20 @@ clearInterval(timer);
     feedback = "Needs Improvement. Try again!";
   }
 
+  // feedbackElement.innerText = `Your final score is: ${score} out of  ${shuffledQuestions.length}`;
+
+
 
   // Display the feedback based on score
   document.getElementById("feedback").innerText = feedback;
 
+
+
   // Populate comparison between answers and correct answers
   const resultsElement = document.getElementById("comparison");
+
+  resultsElement.classList.remove("hidden");
+
   resultsElement.innerHTML = "";
 
   results.forEach((result, index) => {
@@ -346,15 +379,17 @@ clearInterval(timer);
     resultItem.classList.add("result-item");
 
     // Create a string with the question, user's answer, and the correct answer
-    resultItem.innerHTML = `
+    const resultHTML = `
       <p><strong>Question ${index + 1}:</strong> ${result.question}</p>
       <p>Your Answer: 
         <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedChoice}</span>
       </p>
       <p>Correct Answer: <span style="color: green">${result.correctAnswer}</span></p>
     `;
+    resultItem.innerHTML = resultHTML;
     resultsElement.appendChild(resultItem);
   });
+  console.log(results); // This will print the results array to the console when the quiz ends.
 
 }
 
