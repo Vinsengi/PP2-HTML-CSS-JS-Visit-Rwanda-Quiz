@@ -206,63 +206,108 @@ function startTimer() {
 
 
 function selectAnswer(index) {
-  if (selectedChoiceRecorded) return;
+  // if (selectedChoiceRecorded) return;
 
-  // Ensure only the last selected answer is recorded
-  const currentQuestion = shuffledQuestions[currentQuestionIndex];
-  const isCorrect = index === currentQuestion.correct;
-
-  // log if isCorrect is calculated as expected
-
-  console.log(`User selected: ${currentQuestion.answers[index]} (index: ${index})`);
-  console.log(`Correct answer: ${currentQuestion.answers[currentQuestion.correct]}`);
+  // // Ensure only the last selected answer is recorded
+  // const currentQuestion = shuffledQuestions[currentQuestionIndex];
+  // const isCorrect = index === currentQuestion.correct;
 
 
-  results.push({
-    question: currentQuestion.question,
-    selectedChoice: currentQuestion.answers[index],
-    correctAnswer: currentQuestion.answers[currentQuestion.correct],
-    isCorrect: isCorrect
-  });
+  // results.push({
+  //   question: currentQuestion.question,
+  //   selectedChoice: currentQuestion.answers[index],
+  //   correctAnswer: currentQuestion.answers[currentQuestion.correct],
+  //   isCorrect: isCorrect
+  // });
 
-  if (isCorrect) {
-    score++;
-  }
+  // if (isCorrect) {
+  //   score++;
+  // }
 
-  console.log(`Current score: ${score}`);
+  // console.log(`Current score: ${score}`);
 
-  showFeedback(isCorrect);
-  selectedChoiceRecorded = true; // Mark the choice as recorded
-  clearInterval(timer); // Stop the timer when an answer is selected
+  // // showFeedback(isCorrect);
+  // selectedChoiceRecorded = index; // Mark the choice as recorded
+  // clearInterval(timer); // Stop the timer when an answer is selected
 
   // Disable radio buttons after selection
-  document.querySelectorAll("input[name='answer']").forEach(radio => {
-    radio.disabled = true;
-  });
+  // document.querySelectorAll("input[name='answer']").forEach(radio => {
+  //   radio.disabled = true;
+  // });
+
+  // Store the selected choice in the variable, but don't finalize it yet
+  selectedChoiceIndex = index; // Track the selected choice but don't lock it yet
 
   enableNextButton(); // Ensure "Next" button is enabled after answering
 
 
-  updateScoreDisplay(); // Update score display on the UI 
+  // updateScoreDisplay(); // Update score display on the UI 
 }
 
+
+
+// function nextQuestion() {
+//   currentQuestionIndex++;
+//   if (currentQuestionIndex < shuffledQuestions.length) {
+//     loadQuestion();
+//     document.getElementById("next").classList.add("hidden"); // Hide Next button initially
+//   } else {
+//     showResults(); // This should be called at the end of the quiz
+//   }
+//   // Reset selection state
+//   selectedChoiceIndex = -1;
+//   selectedChoiceRecorded = false;
+
+//   // Update the score display again after moving to the next question
+//   updateScoreDisplay();
+// }
 
 
 function nextQuestion() {
+  // Ensure an answer has been selected before moving on
+  if (selectedChoiceIndex === -1) {
+    alert("Please select an answer before proceeding.");
+    return;
+  }
+
+  const currentQuestion = shuffledQuestions[currentQuestionIndex];
+  
+  // Record the answer as final when the "Next" button is clicked
+  const isCorrect = selectedChoiceIndex === currentQuestion.correct;
+
+  // Log the selected answer and whether it was correct
+  results.push({
+    question: currentQuestion.question,
+    selectedChoice: currentQuestion.answers[selectedChoiceIndex],
+    correctAnswer: currentQuestion.answers[currentQuestion.correct],
+    isCorrect: isCorrect
+  });
+
+  // Update the score if the answer is correct
+  if (isCorrect) {
+    score++;
+  }
+
+  // Reset the timer and move to the next question
+  clearInterval(timer);
+
+  // Move to the next question
   currentQuestionIndex++;
   if (currentQuestionIndex < shuffledQuestions.length) {
-    loadQuestion();
-    document.getElementById("next").classList.add("hidden"); // Hide Next button initially
+    loadQuestion(); // Load the next question
+    document.getElementById("next").classList.add("hidden"); // Keep "Next" hidden until the next selection
   } else {
-    showResults(); // This should be called at the end of the quiz
+    showResults(); // Show results when the quiz ends
   }
-  // Reset selection state
-  selectedChoiceIndex = -1;
-  selectedChoiceRecorded = false;
 
-  // Update the score display again after moving to the next question
+  // Reset the selected answer tracking for the next question
+  selectedChoiceIndex = -1; // Clear selected answer
+  selectedChoiceRecorded = false; // Reset any flags
+
+  // Update the score display
   updateScoreDisplay();
 }
+
 
 
 function checkAnswer() {
