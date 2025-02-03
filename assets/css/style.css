@@ -58,17 +58,19 @@ button:hover {
   cursor: pointer;
   padding: 10px;
   width: 100%;
-  border: none;
+  border: 1px solid;
   text-align: left;
   font-size: 15px;
 }
 
-.active,
+
 .collapsible:hover {
-  background-color: #ccc;
+  background-color: var(--primary-green);
 }
 
-
+.active {
+  background-color: var(--timer-light-blue);
+}
 
 .content {
   padding: 28px;

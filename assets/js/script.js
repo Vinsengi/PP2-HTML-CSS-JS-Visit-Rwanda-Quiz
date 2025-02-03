@@ -106,14 +106,14 @@ function startQuiz() {
   document.getElementById("login").classList.add("hidden");
   document.getElementById("quiz").classList.remove("hidden");
 
-  // Load the first question
-  loadQuestion();
+ 
+  loadQuestion();   // Load the first question
 }
 
 let hintUsedForCurrentQuestion = false; // Track hint usage for each question
 
 function loadQuestion() {
-  // Reset previous states for each new question
+ 
   hintUsedForCurrentQuestion = false; // Reset hint for the current question
 
   // Reset answer selection and feedback
@@ -125,7 +125,7 @@ function loadQuestion() {
   // Reset feedback and timer for each new question
   document.getElementById("feed").innerText = "";
   document.getElementById("timer").innerText = "15"; // Reset timer display
-  selectedChoiceRecorded = false; // Reset choice tracking for the new questio
+  selectedChoiceRecorded = false; // Reset choice tracking for the new question
 
   const questionElement = document.getElementById("question");
   const answersElement = document.getElementById("answers");
@@ -164,7 +164,7 @@ function loadQuestion() {
 
   startTimer(); // Start the timer for this question
 
-  // Reset "Next" button state
+ 
   document.getElementById("next").classList.add("hidden"); // Hide "Next" button initially
   document.getElementById("next").disabled = true; // Disable "Next" button initially
 
@@ -237,8 +237,8 @@ function nextQuestion() {
     score++;
   }
 
-  // Reset the timer and move to the next question
-  clearInterval(timer);
+  
+  clearInterval(timer);  // Reset the timer and move to the next question
 
   // Move to the next question
   currentQuestionIndex++;
@@ -333,13 +333,8 @@ function showResults() {
   updateScoreDisplay();
 
 
-  // Display score
-  // document.getElementById("score").innerText = `${username},  you have answered all ${shuffledQuestions.length} questions! Your final score is: ${score}`;
-
   // Calculate the percentage score
   const percentage = (score / shuffledQuestions.length) * 100;
-  // const feedbackElement = document.getElementById("feedback");
-
   const roundedPercentage = percentage.toFixed(2); // Round the percentage to 2 decimal places
 
   let feedback = "";
@@ -384,7 +379,7 @@ function showResults() {
 
 
 function restartQuiz() {
-  //location.reload();
+  location.reload();
   currentQuestionIndex = 0;
   score = 0;
   streak = 0;
