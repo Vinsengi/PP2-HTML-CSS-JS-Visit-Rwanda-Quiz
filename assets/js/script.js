@@ -314,7 +314,7 @@ function useHint() {
 function updateScoreDisplay() {
   const scoreElement = document.getElementById("score"); // Assuming you have an element with id="score"
   scoreElement.innerText = `${username},  you have answered all ${shuffledQuestions.length} questions! 
-  Your final score is: ${score}`;
+  You answered ${score} questions correctly out of ${shuffledQuestions.length} questions!`;
 }
 
 
@@ -340,18 +340,16 @@ function showResults() {
   const percentage = (score / shuffledQuestions.length) * 100;
   // const feedbackElement = document.getElementById("feedback");
 
+  const roundedPercentage = percentage.toFixed(2); // Round the percentage to 2 decimal places
+
   let feedback = "";
   if (percentage >= 80) {
-    feedback = "Excellent! You did an amazing job!";
+    feedback = `Your final score is ${roundedPercentage}%! Excellent! You did an amazing job!`;
   } else if (percentage >= 50) {
-    feedback = "Good Job! Keep practicing to improve.";
+    feedback = `Your final score is ${roundedPercentage}%! Good Job! Keep practicing to improve!`;
   } else {
-    feedback = "Needs Improvement. Try again!";
+    feedback = `Your final score is ${roundedPercentage}%! Needs Improvement. Try again!`;
   }
-
-  // feedbackElement.innerText = `Your final score is: ${score} out of  ${shuffledQuestions.length}`;
-
-
 
   // Display the feedback based on score
   document.getElementById("feedback").innerText = feedback;
@@ -370,7 +368,7 @@ function showResults() {
     resultItem.classList.add("result-item");
 
     // Create a string with the question, user's answer, and the correct answer
-    const resultHTML = `
+    const resultHTML = ` 
       <p><strong>Question ${index + 1}:</strong> ${result.question}</p>
       <p>Your Answer: 
         <span style="color: ${result.isCorrect ? 'green' : 'red'}">${result.selectedChoice}</span>
