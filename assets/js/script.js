@@ -206,62 +206,11 @@ function startTimer() {
 
 
 function selectAnswer(index) {
-  // if (selectedChoiceRecorded) return;
-
-  // // Ensure only the last selected answer is recorded
-  // const currentQuestion = shuffledQuestions[currentQuestionIndex];
-  // const isCorrect = index === currentQuestion.correct;
-
-
-  // results.push({
-  //   question: currentQuestion.question,
-  //   selectedChoice: currentQuestion.answers[index],
-  //   correctAnswer: currentQuestion.answers[currentQuestion.correct],
-  //   isCorrect: isCorrect
-  // });
-
-  // if (isCorrect) {
-  //   score++;
-  // }
-
-  // console.log(`Current score: ${score}`);
-
-  // // showFeedback(isCorrect);
-  // selectedChoiceRecorded = index; // Mark the choice as recorded
-  // clearInterval(timer); // Stop the timer when an answer is selected
-
-  // Disable radio buttons after selection
-  // document.querySelectorAll("input[name='answer']").forEach(radio => {
-  //   radio.disabled = true;
-  // });
-
   // Store the selected choice in the variable, but don't finalize it yet
   selectedChoiceIndex = index; // Track the selected choice but don't lock it yet
 
   enableNextButton(); // Ensure "Next" button is enabled after answering
-
-
-  // updateScoreDisplay(); // Update score display on the UI 
 }
-
-
-
-// function nextQuestion() {
-//   currentQuestionIndex++;
-//   if (currentQuestionIndex < shuffledQuestions.length) {
-//     loadQuestion();
-//     document.getElementById("next").classList.add("hidden"); // Hide Next button initially
-//   } else {
-//     showResults(); // This should be called at the end of the quiz
-//   }
-//   // Reset selection state
-//   selectedChoiceIndex = -1;
-//   selectedChoiceRecorded = false;
-
-//   // Update the score display again after moving to the next question
-//   updateScoreDisplay();
-// }
-
 
 function nextQuestion() {
   // Ensure an answer has been selected before moving on
@@ -372,9 +321,6 @@ function updateScoreDisplay() {
 function showResults() {
   // stop the timer
   clearInterval(timer);
-
-  console.log("Final results:", results); // Debugging log to check the content of results array
-
 
   document.getElementById("result").classList.remove("hidden");
   document.getElementById("comparison").classList.remove("hidden");
