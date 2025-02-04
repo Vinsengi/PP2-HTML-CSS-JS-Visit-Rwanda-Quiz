@@ -1,6 +1,6 @@
 # The Visit Rwanda Quiz
 
-![The Visit Rwanda Quiz shown on a variety of screen sizes](./assets/images/amiresponsiveimage.png)
+![The Visit Rwanda Quiz shown on a variety of screen sizes](./assets/images/amiresponsiveimage.png)![alt text](image.png)
 
 Visit the deployed site: [The Visit Rwanda Quiz](https://vinsengi.github.io/Visit-Rwanda-Quiz_PP2/)
 
@@ -109,8 +109,18 @@ This scheme keeps the quiz interface vibrant, visually consistent, and reflectiv
 As the website is called The Visit Rwanda Quiz, I used an image of the Rwandan flag as the background image to give the user the feeling that the quiz is really about this land they want to visit.
 
 ### Wireframes
+#### Login Page Wireframe
+![The Login Page](./assets/images/login_page.png)
 
-No wireframe at this time as i did not have enough time to do this.
+#### Login Page with Quiz Instruction uncollapsed
+![Loging page 2](./assets/images/login_page_2.png)
+
+#### Quiz Page
+![The Quiz Page](./assets/images/quiz_page.png)
+
+#### Results Page
+![The Results Page](./assets/images/results_page.png)
+
 
 ### Features
 
@@ -125,28 +135,35 @@ No wireframe at this time as i did not have enough time to do this.
 
 #### The Home Page
 
-as soon as you land to the quiz area, you start the quiz just after giving your name in. No navigations involved.
-
+as soon as you land to the quiz area, you start the quiz just after giving your name in. No navigations involved. You hide or show the quiz instructions if you prefer too. 
+![The landing page](./assets/images/landing_page.png)
 #### The Game Page
 
-The quiz page displays the questions (11). every question has 15 seconds timer which stops as long as the user select his/her first choice answer.
+The quiz page displays the questions (x out of 11). every question has 15 seconds timer which doe NOT force the user to move to the next questions after 15 seconds (Allocated time for answering one question).
+Before a choice answer is selected, the "Next" Button is hidden.
+![Image of the quiz page](./assets/images/quizarea.png)
 
-![Image of the quiz page ](./assets/images/example-questions.png)
 
-#### The Quiz area (beginning)
-![Image of quiz area](./assets/images/quizarea.png)
+#### The Quiz area 
+Once the user selects the answer, the "Next" button is shown. once clicked, the user's answer is then recorden as THE CHOICE, and then proceeds to the next question.
+
+If the User would click on "Check your Answwer" Button, the the users would get an instant feedback of whether the selected answer is correct or not correct. Once that is done, the user can may only go to the next question.
+
+![Image of quiz area](./assets/images/quiz_area_with_nextbutton.png)
+
 
 
 
 #### The Scores Page
+![Scores Page Image-1](./assets/images/score-page-image.png)
+![Scores Page Image-2](./assets/images/score-page-image-2.png)
 
-![Scores Page Image](./assets/images/scorepage.png)
 
 #### The alert when time is over
 
-If the user takes more than 15 seconds without selecting an answer, there will come an alert that show that 15 seconds are over and by clicking on "OK", moves the user to the next question.
+If the user takes more than 15 seconds without selecting an answer, there will come an alert that show that 15 seconds are over and by clicking on "OK", this should automatically move the user to the next question. However, that will be in the next iteration. Currently, the user is not moved to the next question automatically after 15 seconds, reason being that a user should select an answer first before he/she can move forward.
 
-![Time is over Alert](./assets/images/timeoveralert.png)
+
 ![Time is over Alert](./assets/images/timeupalert.png)
 
 #### The 500 Error Page
@@ -161,7 +178,7 @@ In future implementations I would like to:
 2. Add some historical information on some questions that could be displayed to the user if the user want it so.
 3. Create a back end database to enable me to store scores which would then allow you to see how you scored in previous quizes.
 4. Look further into the accessibility for people with colour blindness, perhaps by adding symbols such as a tick or cross next to the answer when they are checked.
-5. Final results will be improved
+5. Force the user to move to the next question when the allocated 15 seconds are over
 
 ### Accessibility
 
@@ -244,6 +261,8 @@ To clone the repository:
 - - -
 
 ## Testing
+### JavaScipt Validator
+
 
 ### HTML Validator
 * Passed
@@ -255,7 +274,12 @@ To clone the repository:
 
 ### Performance testing on mobile devices - with Lighthouse
 * Passed
-![APerformance Testing with Lighthouse](./assets/images/testing/accessibility-mobile-testing.png)
+
+![APerformance Testing with Lighthouse](./assets/images/testing/accessibilitytestinglh.png)
+
+### Accessibility Evaluation
+No error shown with the accessibility tool - WAVE.
+![accessibilty evaluation](./assets/images/testing/accessibility-evaluation.png)
 
 ### Solved Bugs
 
@@ -264,11 +288,10 @@ To clone the repository:
 
 ### Known Bugs
 
-* Usename input box to be adjusted and make it bigger as the start quiz button.
-* on mobile devices, the login input box seems attached to the start quiz button and that doesn't look nice.
-* Final results comparison to correct answers needs improvement
+* Radio button of the selectable answers are not adjusted tot he left. it would be possibly be more appealing if they would be aligned left.
+* When the 15 seconds are over, no aautomatic action happens. The user should be prompted to  move to the next question.
+* Images will be redused using Brime
 
-![Future bug fix](./assets/images/testing/futurebugtobefixed.png)
 
 - - -
 

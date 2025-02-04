@@ -379,7 +379,7 @@ function showResults() {
 
 
 function restartQuiz() {
-  location.reload();
+  // location.reload();
   currentQuestionIndex = 0;
   score = 0;
   streak = 0;
