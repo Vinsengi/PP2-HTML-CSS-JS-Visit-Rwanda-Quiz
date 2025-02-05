@@ -1,6 +1,6 @@
 # The Visit Rwanda Quiz
 
-![The Visit Rwanda Quiz shown on a variety of screen sizes](./assets/images/amiresponsiveimage.png)![alt text](image.png)
+![The Visit Rwanda Quiz shown on a variety of screen sizes](./assets/images/amiresponsiveimage.png)
 
 Visit the deployed site: [The Visit Rwanda Quiz](https://vinsengi.github.io/Visit-Rwanda-Quiz_PP2/)
 
@@ -262,7 +262,8 @@ To clone the repository:
 
 ## Testing
 ### JavaScipt Validator
-
+* Passed
+![JSHINT Validator](./assets/images/testing/jshintvalidatorimage.png)
 
 ### HTML Validator
 * Passed

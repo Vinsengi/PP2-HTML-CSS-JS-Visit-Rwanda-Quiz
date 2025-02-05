@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Rwandan Quiz Application is a fun and interactive way to test your knowledge about Rwanda.">
     <title>Visit Rwanda Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="shortcut icon" href="#">
@@ -22,7 +23,6 @@
                 <li>Your score will be displayed at the end.</li>
             </ul>
 
-            <!-- <p>Only the FIRST CHOICE COUNTS for the final results!</p> -->
         </div>
 
 
@@ -34,11 +34,13 @@
             <input type="text" id="username" placeholder="Enter your name">
             <br>
             <br>
-            <button onclick="startQuiz()">Start Quiz</button>
+            
+            <button id="startButton">Start Quiz</button>
+
         </div>
 
         <div id="quiz" class="hidden">
-            <!-- <h3 style="color: red;">NB:FIRST CHOICE COUNTS for final results!</h3> -->
+          
             <h3>Question <span id="question-number">1</span>/11</h3>
             <div id="progress-bar">
                 <div id="progress"></div>
@@ -49,13 +51,18 @@
             <p id="feed"></p> <!-- Feedback after each question -->
             <br>
             <br>
-            <button id="next" class="hidden" onclick="nextQuestion()">Next Question</button>
+            
+            <button id="next" class="hidden">Next Question</button>
+
             <br>
             <br>
-            <button id="check" onclick="checkAnswer()"> Check your Answer</button>
+          
+            <button id="check">Check your Answer</button>
+
             <br>
             <br>
-            <button id="hint" class="hidden" onclick="useHint()">Use Hint</button> <!-- Hint button -->
+            
+            <button id="hint" class="hidden">Use Hint</button>   <!-- Hint button -->
         </div>
 
         <!-- <div id="score-display">Your Score: 0</div> -->
@@ -66,7 +73,9 @@
             <h2>Details of how you answered:</h2>
             <div id="comparison" class="hidden"></div> <!-- This will show the choices compared to correct answers -->
             <br>
-            <button onclick="restartQuiz()">Restart Quiz</button>
+            
+            <button id="restartButton">Restart Quiz</button>
+
         </div>
         
 

@@ -393,3 +393,28 @@ function restartQuiz() {
   loadQuestion();
 
 }
+
+// Wait for the DOM to load before adding event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  // Add event listener for the restart button
+  const restartButton = document.getElementById("restartButton");
+  restartButton.addEventListener("click", restartQuiz);
+
+
+  // Add event listener for the start quiz button
+  const startButton = document.getElementById("startButton");
+  startButton.addEventListener("click", startQuiz); // This adds the click event listener
+
+  // Add event listener for the next question button
+  const nextButton = document.getElementById("next");
+  nextButton.addEventListener("click", nextQuestion); // This adds the click event listener
+
+   // Add event listener for the check answer button
+   const checkButton = document.getElementById("check");
+   checkButton.addEventListener("click", checkAnswer); // This adds the click event listener
+
+   // Add event listener for the use hint button
+  const hintButton = document.getElementById("hint");
+  hintButton.addEventListener("click", useHint); // This adds the click event listener
+
+});
