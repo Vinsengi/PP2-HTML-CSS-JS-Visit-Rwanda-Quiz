@@ -267,11 +267,12 @@ To clone the repository:
 
 ### HTML Validator
 * Passed
-![HTML Validator](./assets/images/testing/htmlValidated.png)
+![HTML Validator](./assets/images/testing/htmlvalidatorresults.png)
 
 ### CSS Validator
 * Passed
-![HTML Validator](./assets/images/testing/cssvalidator.png)
+![CSS Validator](./assets/images/testing/cssvalidatorresults.png)
+
 
 ### Performance testing on mobile devices - with Lighthouse
 * Passed

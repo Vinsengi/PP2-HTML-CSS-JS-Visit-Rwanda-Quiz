@@ -233,19 +233,3 @@ button:hover {
  .hidden {
   display: none;
 }
-
-
-/* aditional codes */
-
- /* Root Variables */
- :root {
-  /* --primary-blue: #1D70B8; */
-  /* --primary-green: green; */
-  /* --accent-yellow: #FAD201; */
-  /* --success-green: #20603D; */
-  /* --error-red: #D62828; */
-  /* --text-dark: #333333; */
-  /* --background-gray: #F4F4F4; */
-  /* --hover-blue: #144a7a; */
-  /* --timer-light-blue: #d9edf7; */
-}
