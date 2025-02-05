@@ -275,7 +275,9 @@ To clone the repository:
 
 ### Performance testing on mobile devices - with Lighthouse
 * Passed
+![Performance Test with Lighthause](./assets/images/testing/performancetestlh.png)
 
+Noticied that in onother browser in which i am loged, the performance reduces. Not sure why this suprising fact!
 ![APerformance Testing with Lighthouse](./assets/images/testing/accessibilitytestinglh.png)
 
 ### Accessibility Evaluation
@@ -291,7 +293,7 @@ No error shown with the accessibility tool - WAVE.
 
 * Radio button of the selectable answers are not adjusted tot he left. it would be possibly be more appealing if they would be aligned left.
 * When the 15 seconds are over, no aautomatic action happens. The user should be prompted to  move to the next question.
-* Images will be redused using Brime
+* Some Images need to also be compressed for a better performance.
 
 
 - - -

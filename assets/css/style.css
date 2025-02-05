@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0px;
   background-image: url('../images/rwandaFlag.png');
-  background-color: var(--primary-blue);
+  background-color: #F4F4F4;
   background-size: cover;
   background-position: center;
   text-align: center;
@@ -24,7 +24,7 @@ body {
   margin: 0 auto;
   padding: 20px;
  
-  background-color: var(--background-gray);
+  background-color: #F4F4F4;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
@@ -34,7 +34,7 @@ body {
 /* Button styles */
 button {
   
-  background-color: var(--primary-blue);
+  background-color: #1D70B8;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -48,7 +48,7 @@ button {
 
 
 button:hover {
-   background-color: var(--primary-green);
+   background-color:  green;
  }
 
 
@@ -65,11 +65,11 @@ button:hover {
 
 
 .collapsible:hover {
-  background-color: var(--primary-green);
+  background-color:  green;
 }
 
 .active {
-  background-color: var(--timer-light-blue);
+  background-color: #d9edf7;
 }
 
 .content {
@@ -83,8 +83,8 @@ button:hover {
 
  /* Timer Styling - Circular Timer */
  #timer {
-  background-color: var(--timer-light-blue);
-  color: var(--text-dark);
+  background-color: #d9edf7;
+  color: #333333;
   font-weight: bold;
   width: 50px;
   height: 50px;
@@ -115,18 +115,18 @@ button:hover {
 }
 
 #feedback.correct {
-  color: var(--success-green);
+  color: #20603D;
 }
 
 #feedback.incorrect {
-  color: var(--error-red);
+  color: #D62828;
 }
 
 
 
 /* Progress Bar */
 #progress {
-  background-color: var(--primary-green);
+  background-color:  green;
   height: 10px;
   width: 0%;
   border-radius: 3px;
@@ -146,7 +146,7 @@ button:hover {
 
 /* Result Section */
 #result {
-  background-color: var(--background-gray);
+  background-color: #F4F4F4;
   padding: 20px;
   border-radius: 8px;
   margin-top: 20px;
@@ -155,7 +155,7 @@ button:hover {
 .result-item {
   padding: 20px;
   margin-bottom: 15px;
-  border-bottom: 1px solid var(--primary-blue);
+  border-bottom: 1px solid #1D70B8;
 
 }
 
@@ -239,13 +239,13 @@ button:hover {
 
  /* Root Variables */
  :root {
-  --primary-blue: #1D70B8;
-  --primary-green: green;
-  --accent-yellow: #FAD201;
-  --success-green: #20603D;
-  --error-red: #D62828;
-  --text-dark: #333333;
-  --background-gray: #F4F4F4;
-  --hover-blue: #144a7a;
-  --timer-light-blue: #d9edf7;
+  /* --primary-blue: #1D70B8; */
+  /* --primary-green: green; */
+  /* --accent-yellow: #FAD201; */
+  /* --success-green: #20603D; */
+  /* --error-red: #D62828; */
+  /* --text-dark: #333333; */
+  /* --background-gray: #F4F4F4; */
+  /* --hover-blue: #144a7a; */
+  /* --timer-light-blue: #d9edf7; */
 }
